@@ -11,10 +11,11 @@ class CreateWomenTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('women', static function (Blueprint $table) {
             $table->id();
+            $table->boolean('is_show_in_gallery')->default(false);
             $table->timestamps();
         });
     }
@@ -24,7 +25,7 @@ class CreateWomenTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('women');
     }
