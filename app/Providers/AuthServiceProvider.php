@@ -27,7 +27,11 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('admin-panel', static function (User $user) {
-            return $user->isAdmin() || $user->isSuperAdmin();
+            return $user->isAdmin() || $user->isEditor();
+        });
+
+        Gate::define('man', static function (User $user) {
+            return $user->isMan();
         });
     }
 }

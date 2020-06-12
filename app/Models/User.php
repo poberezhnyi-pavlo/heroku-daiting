@@ -20,15 +20,19 @@ class User extends Authenticatable
 
     public const ROLE_SUPER_ADMIN = 'superAdmin';
     public const ROLE_ADMIN = 'admin';
-    public const ROLE_USER = 'user';
+    public const ROLE_EDITOR = 'editor';
+    public const ROLE_MAN = 'man';
+    public const ROLE_WOMAN = 'woman';
     public const ROLES = [
         self::ROLE_SUPER_ADMIN,
         self::ROLE_ADMIN,
-        self::ROLE_USER,
+        self::ROLE_EDITOR,
+        self::ROLE_MAN,
+        self::ROLE_WOMAN,
     ];
 
-    public const STATUS_ACTIVE = 'statusActive';
-    public const STATUS_UN_ACTIVE = 'statusUnActive';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_UN_ACTIVE = 'unActive';
     public const STATUS = [
         self::STATUS_ACTIVE,
         self::STATUS_UN_ACTIVE,
@@ -74,9 +78,9 @@ class User extends Authenticatable
     /**
      * @return bool
      */
-    public function isSuperAdmin(): bool
+    public function isEditor(): bool
     {
-        return $this->role === self::ROLE_SUPER_ADMIN;
+        return $this->role === self::ROLE_EDITOR;
     }
 
     /**
@@ -90,9 +94,17 @@ class User extends Authenticatable
     /**
      * @return bool
      */
-    public function isUser(): bool
+    public function isMan(): bool
     {
-        return $this->role === self::ROLE_USER;
+        return $this->role === self::ROLE_MAN;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isWoman(): bool
+    {
+        return $this->role === self::ROLE_WOMAN;
     }
 
     /**

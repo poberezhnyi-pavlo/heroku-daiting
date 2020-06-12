@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->nullableMorphs('user_type');
             $table->enum('role', User::ROLES)
-                ->default(User::ROLE_USER);
+                ->default(User::ROLE_MAN);
             $table->enum('status', User::STATUS)
                 ->default(User::STATUS_ACTIVE);
             $table->timestamps();
