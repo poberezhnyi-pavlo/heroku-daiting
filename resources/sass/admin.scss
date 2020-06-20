@@ -1,0 +1,35 @@
+//Font Awesome Icons
+@import '~admin-lte/plugins/fontawesome-free/css/all.min.css';
+
+//Theme style
+@import '~admin-lte/dist/css/adminlte.min.css';
+@import "~daterangepicker/daterangepicker.css";
+
+//Vue Tables 2
+.VuePagination {
+    justify-content: center;
+}
+
+.VueTables {
+    box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+    margin-bottom: 1rem;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    padding: 8px 12px 0;
+
+    &__error {
+        color:red;
+    }
+
+    &__sort-icon {
+        margin-left: 10px;
+        cursor: pointer;
+    }
+}
+
+.box-profile .img-circle {
+    height: 100px;
+    object-fit: cover;
+}

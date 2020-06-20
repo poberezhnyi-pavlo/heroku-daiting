@@ -16,10 +16,9 @@ class UserSeeder extends Seeder
             'name' => 'root',
             'email' => 'trolikua@gmail.com',
             'password' => '$2y$10$xPSmfkCQwclANNAzvD.8fOBTu0vmfa6Pb4k3Szf0MsHNTfy5X/WEC',
-            'role' => User::ROLE_ADMIN,
-            'status' => User::STATUS_ACTIVE,
+            'role' => User::ROLE_SUPER_ADMIN,
         ]);
 
-        factory(User::class, 10)->create();
+        factory(User::class, 200)->create();
     }
 }

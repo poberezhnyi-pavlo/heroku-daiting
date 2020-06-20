@@ -33,9 +33,11 @@ Route::group(
         ],
     ],
     static function () {
-        Route::get('dashboard', 'DashboardController@dashboard')->name('admin.dashboard');
+        Route::get('/', 'DashboardController@index')->name('admin.dashboard');
         Route::get('men', 'DashboardController@men')->name('admin.men');
         Route::get('women', 'DashboardController@women')->name('admin.women');
-        Route::get('settings', 'DashboardController@settings')->name('admin.settings');
+        Route::resource('users', 'UserController');
+        Route::get('fetch-users', 'UserController@fetchUsers');
+        Route::resource('settings', 'SettingController');
     }
 );

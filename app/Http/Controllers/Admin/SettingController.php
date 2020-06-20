@@ -7,6 +7,10 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+/**
+ * Class SettingController
+ * @package App\Http\Controllers\Admin
+ */
 class SettingController extends Controller
 {
     /**

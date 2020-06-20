@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -17,6 +18,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
     public const ROLE_SUPER_ADMIN = 'superAdmin';
     public const ROLE_ADMIN = 'admin';
@@ -31,12 +33,7 @@ class User extends Authenticatable
         self::ROLE_WOMAN,
     ];
 
-    public const STATUS_ACTIVE = 'active';
-    public const STATUS_UN_ACTIVE = 'unActive';
-    public const STATUS = [
-        self::STATUS_ACTIVE,
-        self::STATUS_UN_ACTIVE,
-    ];
+    public const DEFAULT_AVATAR = 'images/user.png';
 
     /**
      * The attributes that are mass assignable.
@@ -44,7 +41,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role',
+        'name',
+        'email',
+        'password',
+        'role',
+        'avatar',
     ];
 
     /**
@@ -86,6 +87,14 @@ class User extends Authenticatable
     /**
      * @return bool
      */
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === self::ROLE_SUPER_ADMIN;
+    }
+
+    /**
+     * @return bool
+     */
     public function isAdmin(): bool
     {
         return $this->role === self::ROLE_ADMIN;
@@ -112,6 +121,15 @@ class User extends Authenticatable
      */
     public function isActive(): bool
     {
-        return $this->status === self::STATUS_ACTIVE;
+        return !$this->trashed();
+    }
+
+    /**
+     * @param string $url
+     * @return string
+     */
+    public function getAvatarAttribute($url): string
+    {
+        return $url ?: self::DEFAULT_AVATAR;
     }
 }

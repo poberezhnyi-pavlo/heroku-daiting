@@ -5,25 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+/**
+ * Class DashboardController
+ * @package App\Http\Controllers\Admin
+ */
 class DashboardController extends Controller
 {
-    public function dashboard()
+    public function index()
     {
-
-    }
-
-    public function men()
-    {
-
-    }
-
-    public function women()
-    {
-
-    }
-
-    public function settings()
-    {
-
+        return view('admin.dashboard');
     }
 }
