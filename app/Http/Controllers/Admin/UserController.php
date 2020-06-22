@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\VueTableRequest;
-use App\Models\User;
 use App\Services\Admin\UserService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -40,12 +39,17 @@ class UserController extends BaseController
      * @param VueTableRequest $tableRequest
      * @return JsonResponse
      */
-    public function fetchUsers(VueTableRequest $tableRequest): JsonResponse
+    public function fetch(VueTableRequest $tableRequest): JsonResponse
     {
         $data = $this->service
             ->index($tableRequest->all());
 
         return response()->json($data);
+    }
+
+    public function deactivate(int $id)
+    {
+        return $this->service->disable($id);
     }
 
     /**
@@ -72,13 +76,15 @@ class UserController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param User $user
+     * @param int $user
      * @return Response
      */
-    public function show(User $user): Response
+    public function show(int $user): Response
     {
+        $result = $this->service->getItem($user);
+
         return response()
-            ->view('admin.users.show', ['user'=> $user]);
+            ->view('admin.users.show', ['user'=> $result]);
     }
 
     /**

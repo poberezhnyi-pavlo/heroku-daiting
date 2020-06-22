@@ -26,6 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(
     [
         'prefix' => 'admin',
+        'name' => 'admin',
         'namespace' => 'Admin',
         'middleware' => [
             'auth',
@@ -36,8 +37,15 @@ Route::group(
         Route::get('/', 'DashboardController@index')->name('admin.dashboard');
         Route::get('men', 'DashboardController@men')->name('admin.men');
         Route::get('women', 'DashboardController@women')->name('admin.women');
+
+        //Users
+        Route::group(['prefix' => 'users'], static function () {
+            Route::get('fetch', 'UserController@fetch');
+            Route::delete('deactivate/{id}', 'UserController@deactivate');
+        });
         Route::resource('users', 'UserController');
-        Route::get('fetch-users', 'UserController@fetchUsers');
+
+
         Route::resource('settings', 'SettingController');
     }
 );

@@ -44,10 +44,35 @@
                 </li>
             </ul>
 
-            <a href="#" class="btn btn-success btn-block">
-                <i class="fas fa-user-edit"></i>
-                <b>Edit profile</b>
-            </a>
+            <div>
+                <a href="#"
+                   class="btn btn-success"
+                   data-toggle="tooltip"
+                   data-placement="top"
+                   title="Edit account"
+                >
+                    <i class="fas fa-user-edit"></i>
+                    <b>Edit profile</b>
+                </a>
+                <a href="#"
+                   class="btn btn-danger"
+                   data-toggle="tooltip"
+                   data-placement="top"
+                   title="Delete account"
+                >
+                    <i class="far fa-trash-alt"></i>
+                    <b>Delete account</b>
+                </a>
+                <a href="#"
+                   class="btn btn-warning"
+                   data-toggle="tooltip"
+                   data-placement="top"
+                   title="Disable account"
+                >
+                    <i class="fas fa-ban"></i>
+                    <b>Disable account</b>
+                </a>
+            </div>
         </div>
         <!-- /.card-body -->
     </div>

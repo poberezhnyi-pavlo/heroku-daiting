@@ -10,8 +10,10 @@ window.Vue = require('vue');
 window.moment = require('moment');
 
 import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
 Vue.use(ServerTable);
-
+Vue.use(VueToast);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

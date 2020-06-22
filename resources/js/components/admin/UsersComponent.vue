@@ -1,6 +1,7 @@
 <template>
     <transition name="fade" mode="out-in">
         <v-server-table
+            ref="table"
             :url="url"
             :columns="columns"
             :options="options"
@@ -12,14 +13,31 @@
                 v-html="setStatus(props.row.deleted_at)"
             ></span>
             <span slot="action" slot-scope="props">
-                <a href="#" :href="'/admin/users/'+props.row.id" class="text-primary">
+                <a :href="'/admin/users/'+props.row.id"
+                   class="text-primary"
+                   data-toggle="tooltip"
+                   data-placement="top"
+                   title="View account"
+                >
                     <i class="fas fa-eye"></i>
                 </a>
-                <a :href="props.row.id" class="text-success">
+                <a :href="props.row.id"
+                   class="text-success"
+                   data-toggle="tooltip"
+                   data-placement="top"
+                   title="Edit account"
+                >
                     <i class="fas fa-pencil-alt"></i>
                 </a>
-                <a :href="props.row.id" class="text-danger">
-                    <i class="far fa-trash-alt"></i>
+                <a
+                    href="#"
+                    class="text-danger"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Disable account"
+                    @click.prevent="disable(props.row.id)"
+                >
+                    <i class="fas fa-ban"></i>
                 </a>
             </span>
         </v-server-table>
@@ -39,7 +57,7 @@
         },
         data: function() {
             return {
-                url: '/admin/fetch-users',
+                url: '/admin/users/fetch',
                 columns: [
                     'id',
                     'name',
@@ -60,6 +78,7 @@
                         'email',
                         'created_at',
                     ],
+                    resizableColumns: true,
                     sortable: [
                         'id',
                         'name',
@@ -100,6 +119,18 @@
                 let inactive = '<i class="fas fa-ban text-danger"></i>';
 
                 return data ? inactive : active;
+            },
+            disable(id) {
+                return axios.delete(`/admin/users/deactivate/${id}`)
+                    .then((response) => {
+                        Vue.$toast.success('Profile deactivated successfully!')
+                    })
+                    .catch((error) => {
+                        Vue.$toast.error('Something wrong.')
+                    })
+                    .then(() => {
+                        this.$refs.table.refresh();
+                    });
             },
         }
     }
