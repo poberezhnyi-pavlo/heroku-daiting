@@ -67,4 +67,13 @@ abstract class BaseRepository
         return $q->first();
     }
 
+    /**
+     * @param array $where
+     * @return mixed
+     */
+    public function geCount(array $where = [])
+    {
+        return $this->model->where($where)->withTrashed()->count();
+    }
+
 }

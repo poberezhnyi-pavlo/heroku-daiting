@@ -1,1 +1,0 @@
-@extends('admin.parts.layout')

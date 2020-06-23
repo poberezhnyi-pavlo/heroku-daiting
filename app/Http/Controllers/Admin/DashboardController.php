@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Services\Admin\DashboardService;
+use Illuminate\Http\Response;
 
 /**
  * Class DashboardController
@@ -11,8 +12,30 @@ use Illuminate\Http\Request;
  */
 class DashboardController extends Controller
 {
-    public function index()
+
+    /**
+     * @var DashboardService
+     */
+    protected $dashboardService;
+
+    /**
+     * DashboardController constructor.
+     * @param DashboardService $dashboardService
+     */
+    public function __construct(DashboardService $dashboardService)
     {
-        return view('admin.dashboard');
+        $this->dashboardService = $dashboardService;
+    }
+
+    /**
+     * @return Response
+     */
+    public function index(): Response
+    {
+        $data = $this->dashboardService->getUserData();
+
+        return response()->view('admin.dashboard.index', [
+            'data' => $data,
+        ]);
     }
 }
