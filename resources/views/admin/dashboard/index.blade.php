@@ -26,7 +26,7 @@
 
         <div class="col-lg-3 col-6">
             <!-- small card -->
-            <div class="small-box bg-fuchsia">
+            <div class="small-box bg-pink">
                 <div class="inner">
                     <h3>{{$data['woman']}}</h3>
 

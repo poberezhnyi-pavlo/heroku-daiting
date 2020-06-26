@@ -45,7 +45,10 @@ Route::group(
         });
         Route::resource('users', 'UserController');
 
-
-        Route::resource('settings', 'SettingController');
+        //Settings
+        Route::group(['prefix' => 'settings'], static function () {
+            Route::get('/', 'SettingController@index')->name('admin.settings.index');
+            Route::post('update', 'SettingController@update')->name('admin.settings.update');
+        });
     }
 );

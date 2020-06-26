@@ -45,7 +45,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('settings.index')}}" class="nav-link">
+                    <a href="{{route('admin.settings.index')}}" class="nav-link">
                         <i class="fas fa-sliders-h"></i>
                         <p>Settings</p>
                     </a>

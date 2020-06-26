@@ -49,6 +49,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid" id="app">
+                <div class="row">
+                    <div class="col-12">
+                        @if($errors)
+                            @foreach ($errors->all() as $error)
+                                <div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <h5><i class="icon fas fa-ban"></i> Error!</h5>
+                                    {{ $error }}
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
                 @yield('content')
             </div><!-- /.container-fluid -->
         </div>

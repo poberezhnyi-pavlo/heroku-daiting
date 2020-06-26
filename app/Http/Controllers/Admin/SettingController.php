@@ -2,90 +2,52 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Setting;
+use App\Http\Controllers\BaseController;
+use App\Services\Admin\SettingService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
 
 /**
  * Class SettingController
  * @package App\Http\Controllers\Admin
  */
-class SettingController extends Controller
+class SettingController extends BaseController
 {
+    /**
+     * SettingController constructor.
+     * @param SettingService $settingService
+     */
+    public function __construct(SettingService $settingService)
+    {
+        $this->service = $settingService;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index()
+    public function index(): Response
     {
-        //
-    }
+        $data = $this->service->getSettings();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  Setting  $setting
-     * @return Response
-     */
-    public function show(Setting $setting)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  Setting  $setting
-     * @return Response
-     */
-    public function edit(Setting $setting)
-    {
-        //
+        return response()
+            ->view('admin.settings.index', [
+                'data' => $data,
+            ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  Setting  $setting
-     * @return Response
+     * @return Collection
      */
-    public function update(Request $request, Setting $setting)
+    public function update(Request $request): Collection
     {
-        //
+        return $this->service
+            ->updateSettings($request->all());
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Setting  $setting
-     * @return Response
-     */
-    public function destroy(Setting $setting)
-    {
-        //
-    }
 }

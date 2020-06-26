@@ -13,5 +13,5 @@ abstract class BaseService
     /**
      * @var BaseRepository
      */
-    public $repository;
+    protected $repository;
 }
