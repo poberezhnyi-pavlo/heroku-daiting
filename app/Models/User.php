@@ -28,12 +28,13 @@ class User extends Authenticatable
     public const ROLE_EDITOR = 'editor';
     public const ROLE_MAN = 'man';
     public const ROLE_WOMAN = 'woman';
+    public const ROLE_USER = 'user';
+
     public const ROLES = [
         self::ROLE_SUPER_ADMIN,
         self::ROLE_ADMIN,
         self::ROLE_EDITOR,
-        self::ROLE_MAN,
-        self::ROLE_WOMAN,
+        self::ROLE_USER,
     ];
 
     public const DEFAULT_AVATAR = 'images/user.png';
@@ -49,6 +50,7 @@ class User extends Authenticatable
         'password',
         'role',
         'avatar',
+        'phone',
     ];
 
     /**
@@ -108,7 +110,7 @@ class User extends Authenticatable
      */
     public function isMan(): bool
     {
-        return $this->role === self::ROLE_MAN;
+//        return $this->role === self::ROLE_MAN;
     }
 
     /**
@@ -116,7 +118,7 @@ class User extends Authenticatable
      */
     public function isWoman(): bool
     {
-        return $this->role === self::ROLE_WOMAN;
+//        return $this->role === self::ROLE_WOMAN;
     }
 
     /**

@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Man::class, static function (Faker $faker) {
     return [
-        //
+        'credits' => $faker->numberBetween(0, 1000),
     ];
 });

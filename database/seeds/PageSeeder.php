@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+/**
+ * Class PageSeeder
+ */
 class PageSeeder extends Seeder
 {
     /**
@@ -9,8 +12,8 @@ class PageSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        //
+
     }
 }

@@ -1,7 +1,11 @@
 <?php
 
+use App\Models\Woman;
 use Illuminate\Database\Seeder;
 
+/**
+ * Class WomanSeeder
+ */
 class WomanSeeder extends Seeder
 {
     /**
@@ -9,8 +13,8 @@ class WomanSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        //
+        factory(Woman::class, 20)->create();
     }
 }
