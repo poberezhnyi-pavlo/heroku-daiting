@@ -23,6 +23,9 @@ class Man extends Model
      */
     public function user():MorphOne
     {
-        return $this->morphOne(User::class, 'user_type');
+        return $this->morphOne(
+            User::class,
+            'user'
+        );
     }
 }

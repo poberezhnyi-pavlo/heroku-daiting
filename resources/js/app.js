@@ -28,6 +28,7 @@ Vue.use(VueToast);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('users-component', require('./components/admin/UsersComponent.vue').default);
 Vue.component('spinner-component', require('./components/admin/SpinnerComponent.vue').default);
+Vue.component('settings-form-component', require('./components/admin/SettingsFormComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

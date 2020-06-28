@@ -36,11 +36,12 @@ $factory->define(User::class, static function (Faker $faker) {
         'role' => $faker->randomElement([
             User::ROLE_ADMIN,
             User::ROLE_EDITOR,
+            User::ROLE_USER,
         ]),
         'avatar' => $faker->imageUrl(640, 480, 'people'),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
-        'user_type_type' => $userType,
-        'user_type_id' => $userable->id,
+        'user_type' => $userType,
+        'user_id' => $userable->id,
     ];
 });
