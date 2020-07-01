@@ -19,6 +19,7 @@ class CreatePagesTable extends Migration
             $table->longText('body');
             $table->boolean('published');
             $table->string('slug');
+            $table->timestamps();
         });
     }
 

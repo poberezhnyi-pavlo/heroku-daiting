@@ -15,7 +15,7 @@
                 <img src="{{ asset(Auth::user()->avatar) }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="{{ Auth::user()->getKey() }}" class="text-capitalize d-block">
+                <a href="users/{{ Auth::user()->getKey() }}" class="text-capitalize d-block">
                     {{ Auth::user()->name }}
                 </a>
             </div>
@@ -33,9 +33,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>Simple Link</p>
+                    <a href="{{route('pages.index')}}" class="nav-link">
+                        <i class="far fa-copy"></i>
+                        <p>Pages</p>
                     </a>
                 </li>
                 <li class="nav-item">

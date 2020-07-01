@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Page;
 use Illuminate\Database\Seeder;
 
 /**
@@ -14,6 +15,6 @@ class PageSeeder extends Seeder
      */
     public function run(): void
     {
-
+        factory(Page::class, 10)->create();
     }
 }

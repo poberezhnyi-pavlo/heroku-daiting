@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="en">
 @include('admin.parts.header')
 <body class="hold-transition sidebar-mini">
@@ -59,6 +55,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     {{ $error }}
                                 </div>
                             @endforeach
+                        @endif
+
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h5><i class="far fa-check-circle"></i> Success!</h5>
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if (session('warning'))
+                            <div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h5><i class="fas fa-exclamation-triangle"></i> Warning!</h5>
+                                <strong>{{ session('warning') }}</strong>
+                            </div>
                         @endif
                     </div>
                 </div>

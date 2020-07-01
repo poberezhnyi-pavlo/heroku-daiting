@@ -8,6 +8,7 @@
     "/css/app.css.map": "/css/app.css.map",
     "/css/admin.css.map": "/css/admin.css.map",
     "/js/libs.js": "/js/libs.js",
+    "/css/libs.css": "/css/libs.css",
     "/js/admin/jquery.min.js": "/js/admin/jquery.min.js",
     "/js/admin/bootstrap.bundle.min.js": "/js/admin/bootstrap.bundle.min.js",
     "/js/admin/adminlte.min.js": "/js/admin/adminlte.min.js"

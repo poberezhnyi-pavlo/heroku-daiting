@@ -20,7 +20,12 @@ mix.js('resources/js/admin.js', 'public/js/admin/admin.js')
     .sass('resources/sass/admin.scss', 'public/css/admin.css')
     .scripts([
         'node_modules/daterangepicker/daterangepicker.js',
+        'node_modules/admin-lte/plugins/bootstrap-switch/js/bootstrap-switch.min.js',
+        'node_modules/suneditor/dist/suneditor.min.js',
     ], 'public/js/libs.js')
+    .styles([
+        'node_modules/suneditor/dist/css/suneditor.min.css',
+    ], 'public/css/libs.css')
     .copy('node_modules/admin-lte/plugins/jquery/jquery.min.js', 'public/js/admin/jquery.min.js')
     .copy('node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js', 'public/js/admin/bootstrap.bundle.min.js')
     .copy('node_modules/admin-lte/dist/js/adminlte.min.js', 'public/js/admin/adminlte.min.js')

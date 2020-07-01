@@ -25,7 +25,7 @@ class UserService extends BaseService
      * @param array $request
      * @return array
      */
-    public function index(array $request): array
+    public function userIndex(array $request): array
     {
         return $this->repository->get($request);
     }

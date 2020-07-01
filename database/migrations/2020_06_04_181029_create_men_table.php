@@ -15,8 +15,8 @@ class CreateMenTable extends Migration
     {
         Schema::create('men', static function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->float('credits')->default(0);
+            $table->timestamps();
         });
     }
 

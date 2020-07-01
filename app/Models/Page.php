@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -9,10 +10,10 @@ use Illuminate\Database\Eloquent\Model;
  * @package App\Models
  * @property string title
  * @property string body
- * @property int order
- * @property bool show_in_menu
  * @property bool published
  * @property string slug
+ * @property Carbon created_at
+ * @property Carbon edited_at
  */
 class Page extends Model
 {
@@ -22,4 +23,13 @@ class Page extends Model
         'published',
         'slug',
     ];
+
+    /**
+     * @param string $value
+     * @return void
+     */
+    public function setPublishedAttribute($value): void
+    {
+        $this->attributes['published'] = $value ? 1 : 0;
+    }
 }

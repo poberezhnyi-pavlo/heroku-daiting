@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Traits\VueTableRepositoryTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 /**
@@ -74,7 +75,10 @@ abstract class BaseRepository
      */
     public function geCount(array $where = [])
     {
-        return $this->model->where($where)->withTrashed()->count();
+        return $this->model
+            ->where($where)
+            ->withTrashed()
+            ->count();
     }
 
     /**
@@ -90,10 +94,19 @@ abstract class BaseRepository
      * @param array $where
      * @return bool
      */
-    public function updateModel(array $data, array $where = []): bool
+    public function updateModelWhere(array $data, array $where = []): bool
     {
-
         return $this->model->where($where)->update($data);
+    }
+
+    /**
+     * @param Model $model
+     * @param Request $request
+     * @return bool
+     */
+    public function updateModel(Model $model, Request $request): bool
+    {
+        return $model->update($request->all());
     }
 
     /**
@@ -103,7 +116,7 @@ abstract class BaseRepository
     public function massUpdate(array $collection): Collection
     {
         return collect($collection)->each(function ($item) {
-            return $this->updateModel($item, [
+            return $this->updateModelWhere($item, [
                 'id' =>$item['id'],
             ]);
         });

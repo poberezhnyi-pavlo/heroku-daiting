@@ -28,6 +28,9 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property string city
  * @property string video_url
  * @property bool is_show_in_gallery
+ * @property Carbon created_at
+ * @property Carbon edited_at
+ * @property Carbon deleted_at
  */
 class Woman extends Model
 {

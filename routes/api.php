@@ -14,6 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', static function (Request $request) {
     return $request->user();
 });
+
+Route::group(
+    [
+        'prefix' => 'stuff',
+        'name' => 'stuff',
+        'namespace' => 'Stuff',
+    ],
+    static function () {
+        Route::middleware('optimizeImages')->group(static function () {
+            // all images will be optimized automatically
+            Route::post('uploadImage', 'ImageController@uploadImage');
+        });
+        Route::post('deleteImage', 'ImageController@deleteImage');
+    });

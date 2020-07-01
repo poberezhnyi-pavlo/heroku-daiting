@@ -2,6 +2,8 @@
 
 namespace App\Services\Admin;
 
+use App\Models\Man;
+use App\Models\Woman;
 use App\Repositories\Admin\UserRepository;
 use App\Services\BaseService;
 
@@ -22,8 +24,12 @@ class DashboardService extends BaseService
     public function getUserData(): array
     {
         return [
-            'man' => $this->repository->geCount(['role' => 'man']),
-            'woman' => $this->repository->geCount(['role' => 'woman']),
+            'man' => $this->repository->geCount([
+                'user_type' => Man::class,
+            ]),
+            'woman' => $this->repository->geCount([
+                'user_type' => Woman::class,
+            ]),
         ];
     }
 }

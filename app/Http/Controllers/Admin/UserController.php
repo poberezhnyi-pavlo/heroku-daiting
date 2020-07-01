@@ -42,7 +42,7 @@ class UserController extends BaseController
     public function fetch(VueTableRequest $tableRequest): JsonResponse
     {
         $data = $this->service
-            ->index($tableRequest->all());
+            ->userIndex($tableRequest->all());
 
         return response()->json($data);
     }

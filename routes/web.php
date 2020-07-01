@@ -34,7 +34,8 @@ Route::group(
         ],
     ],
     static function () {
-        Route::get('/', 'DashboardController@index')->name('admin.dashboard');
+        Route::get('/', 'DashboardController@index')
+            ->name('admin.dashboard');
 //        Route::get('men', 'DashboardController@men')->name('admin.men');
 //        Route::get('women', 'DashboardController@women')->name('admin.women');
 
@@ -47,8 +48,13 @@ Route::group(
 
         //Settings
         Route::group(['prefix' => 'settings'], static function () {
-            Route::get('/', 'SettingController@index')->name('admin.settings.index');
-            Route::post('update', 'SettingController@update')->name('admin.settings.update');
+            Route::get('/', 'SettingController@index')
+                ->name('admin.settings.index');
+            Route::post('update', 'SettingController@update')
+                ->name('admin.settings.update');
         });
+
+        //Pages
+        Route::resource('pages', 'PageController');
     }
 );
