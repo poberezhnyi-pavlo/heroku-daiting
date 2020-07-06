@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    <users-component></users-component>
+    <users-component user-type="{{$type}}"></users-component>
 @endsection

@@ -3,6 +3,8 @@
 namespace App\Traits;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
 
 /**
  * Trait VueTableRepositoryTrait
@@ -23,6 +25,12 @@ trait VueTableRepositoryTrait
         $decodedQuery = json_decode($query, true);
 
         if (isset($decodedQuery) && $decodedQuery) {
+
+            if (isset($decodedQuery['user_type'])) {
+                $data->whereUserType($decodedQuery['user_type']);
+                Arr::forget($decodedQuery, 'user_type');
+            }
+
             $data = $byColumn == 1 ?
                 $this->filterByColumn($data, $decodedQuery) :
                 $this->filter($data, $decodedQuery, $fields);
@@ -30,8 +38,7 @@ trait VueTableRepositoryTrait
 
         $count = $data->count();
 
-        $data->limit($limit)
-            ->skip($limit * ($page - 1));
+        $data->limit($limit)->skip($limit * ($page - 1));
 
         if (isset($orderBy)) {
             $direction = $ascending == 1 ? 'ASC' : 'DESC';
@@ -54,7 +61,7 @@ trait VueTableRepositoryTrait
      */
     protected function filterByColumn($data, $queries)
     {
-        return $data->where(static function ($q) use ($queries) {
+        return $data->where(static function (Builder $q) use ($queries) {
             foreach ($queries as $field => $query) {
                 if (is_string($query)) {
                     $q->where($field, 'LIKE', "%{$query}%");

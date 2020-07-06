@@ -37,7 +37,7 @@ abstract class BaseRepository
      * @param int $id
      * @return bool|null
      */
-    public function forceDestroy($id)
+    public function forceDestroy($id): ?bool
     {
         return $this->model->forceDelete($id);
     }
@@ -120,6 +120,15 @@ abstract class BaseRepository
                 'id' =>$item['id'],
             ]);
         });
+    }
+
+    /**
+     * @param array $where
+     * @return mixed
+     */
+    public function getOneModel(array $where = [])
+    {
+        return $this->model->firstWhere($where);
     }
 
 }

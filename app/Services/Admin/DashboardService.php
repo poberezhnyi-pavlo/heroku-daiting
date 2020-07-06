@@ -4,6 +4,7 @@ namespace App\Services\Admin;
 
 use App\Models\Man;
 use App\Models\Woman;
+use App\Repositories\Admin\SettingRepository;
 use App\Repositories\Admin\UserRepository;
 use App\Services\BaseService;
 
@@ -13,9 +14,15 @@ use App\Services\BaseService;
  */
 class DashboardService extends BaseService
 {
-    public function __construct(UserRepository $userRepository)
+    protected $settingsRepository;
+
+    public function __construct(
+        UserRepository $userRepository,
+        SettingRepository $settingRepository
+    )
     {
         $this->repository = $userRepository;
+        $this->settingsRepository = $settingRepository;
     }
 
     /**
@@ -30,6 +37,8 @@ class DashboardService extends BaseService
             'woman' => $this->repository->geCount([
                 'user_type' => Woman::class,
             ]),
+            'videoCost' => $this->settingsRepository
+                ->getOneModel(['key' =>  'videoCostPerMinute']),
         ];
     }
 }

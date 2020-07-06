@@ -42,6 +42,9 @@
                 <li class="list-group-item">
                     <b>Updated at:</b> <a class="float-right">{{$user->updated_at}}</a>
                 </li>
+                <li class="list-group-item">
+                    <b>Type:</b> <a class="float-right">{{Str::afterLast($user->user_type, '\\')}}</a>
+                </li>
             </ul>
 
             <div>

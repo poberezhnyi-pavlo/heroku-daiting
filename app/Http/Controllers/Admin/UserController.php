@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\VueTableRequest;
+use App\Models\Man;
+use App\Models\Woman;
 use App\Services\Admin\UserService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -32,7 +34,31 @@ class UserController extends BaseController
     public function index(): Response
     {
         return response()
-            ->view('admin.users.index');
+            ->view('admin.users.index', [
+                'type' => 'admin',
+            ]);
+    }
+
+    /**
+     * @return Response
+     */
+    public function womanIndex(): Response
+    {
+        return response()
+            ->view('admin.users.index', [
+                'type' => Woman::class,
+            ]);
+    }
+
+    /**
+     * @return Response
+     */
+    public function manIndex(): Response
+    {
+        return response()
+            ->view('admin.users.index', [
+                'type' => Man::class,
+            ]);
     }
 
     /**

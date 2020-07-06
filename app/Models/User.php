@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,6 +20,8 @@ use Illuminate\Notifications\Notifiable;
  * @property string name
  * @property string email
  * @property string phone
+ * @property string user_type
+ * @property int user_id
  * @property Carbon created_at
  * @property Carbon edited_at
  *
@@ -143,5 +146,26 @@ class User extends Authenticatable
     public function getAvatarAttribute($url): string
     {
         return $url ?: self::DEFAULT_AVATAR;
+    }
+
+    /**
+     * Scope a query by User type.
+     *
+     * @param Builder $query
+     * @param string $type
+     * @return Builder
+     */
+    public function scopeWhereUserType(Builder $query, string $type): Builder
+    {
+        //get simple users
+        if ($type === Man::class || $type === Woman::class) {
+            return $query->whereHasMorph('user', $type);
+        }
+
+        //get admin users
+        return $query->whereIn('role', [
+            self::ROLE_ADMIN,
+            self::ROLE_EDITOR,
+        ]);
     }
 }

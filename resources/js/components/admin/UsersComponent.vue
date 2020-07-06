@@ -55,6 +55,9 @@
             Event,
             ServerTable,
         },
+        props: [
+            'userType',
+        ],
         data: function() {
             return {
                 url: '/admin/users/fetch',
@@ -64,6 +67,7 @@
                     'email',
                     'deleted_at',
                     'created_at',
+                    'role',
                     'action',
                 ],
                 options: {
@@ -77,6 +81,13 @@
                         'name',
                         'email',
                         'created_at',
+                        'user_type'
+                    ],
+                    initFilters: {
+                        'user_type': this.userType,
+                    },
+                    customFilters: [
+                        'byUserType',
                     ],
                     resizableColumns: true,
                     sortable: [

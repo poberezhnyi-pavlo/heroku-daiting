@@ -37,7 +37,7 @@ Route::group(
         Route::get('/', 'DashboardController@index')
             ->name('admin.dashboard');
 //        Route::get('men', 'DashboardController@men')->name('admin.men');
-//        Route::get('women', 'DashboardController@women')->name('admin.women');
+//        Route::resource('women', 'WomanController');
 
         //Users
         Route::group(['prefix' => 'users'], static function () {
@@ -45,6 +45,10 @@ Route::group(
             Route::delete('deactivate/{id}', 'UserController@deactivate');
         });
         Route::resource('users', 'UserController');
+        Route::get('women', 'UserController@womanIndex')
+            ->name('admin.woman.index');
+        Route::get('men', 'UserController@manIndex')
+            ->name('admin.man.index');
 
         //Settings
         Route::group(['prefix' => 'settings'], static function () {
