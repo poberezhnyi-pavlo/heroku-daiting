@@ -10,10 +10,10 @@
             <div class="text-center">
                 <img
                     class="profile-user-img img-fluid img-circle"
-                    @if(Str::start('$user->avatar', 'images'))
-                        src="{{ asset($user->avatar) }}"
-                    @else
+                    @if(Str::startsWith($user->avatar, 'http'))
                         src="{{$user->avatar}}"
+                    @else
+                        src="{{ asset('storage/' . $user->avatar) }}"
                     @endif
                     alt="User profile picture"
                 >
@@ -27,7 +27,7 @@
                 <li class="list-group-item">
                     <b>Status:</b> <a class="float-right">
                         @if($user->deleted_at)
-                            <span class="badge badge-error">Not active</span>
+                            <span class="badge badge-danger">Not active</span>
                         @else
                             <span class="badge badge-success">Active</span>
                         @endif
@@ -48,7 +48,7 @@
             </ul>
 
             <div>
-                <a href="#"
+                <a href="{{route('users.edit', $user->id)}}"
                    class="btn btn-success"
                    data-toggle="tooltip"
                    data-placement="top"
@@ -57,26 +57,91 @@
                     <i class="fas fa-user-edit"></i>
                     <b>Edit profile</b>
                 </a>
-                <a href="#"
+                <button
                    class="btn btn-danger"
-                   data-toggle="tooltip"
+                   data-toggle="modal"
                    data-placement="top"
                    title="Delete account"
+                   data-target="#deleteConfirmModal"
                 >
                     <i class="far fa-trash-alt"></i>
                     <b>Delete account</b>
-                </a>
-                <a href="#"
-                   class="btn btn-warning"
-                   data-toggle="tooltip"
-                   data-placement="top"
-                   title="Disable account"
-                >
-                    <i class="fas fa-ban"></i>
-                    <b>Disable account</b>
-                </a>
+                </button>
+                @if($user->deleted_at)
+                    <form
+                        action="{{route('activate', $user->id)}}"
+                        method="POST"
+                        class="d-inline"
+                    >
+                        @csrf
+                        <button
+                            class="btn btn-info"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Enable account"
+                        >
+                            <i class="fas fa-trash-restore"></i>
+                            <b>Enable account</b>
+                        </button>
+                    </form>
+                @else
+                    <form
+                        action="{{route('deactivate', $user->id)}}"
+                        method="POST"
+                        class="d-inline"
+                    >
+                        @method('DELETE')
+                        @csrf
+                        <button
+                            class="btn btn-warning"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Delete account"
+                        >
+                            <i class="fas fa-ban"></i>
+                            <b>Disable account</b>
+                        </button>
+                    </form>
+                @endif
+
             </div>
         </div>
         <!-- /.card-body -->
+    </div>
+
+    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Do you really want to delete user <b>{{$user->name}}</b>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form
+                        action="{{route('users.destroy', $user->id)}}"
+                        method="POST"
+                        class="d-inline"
+                    >
+                        @csrf
+                        @method('DELETE')
+                        <button
+                            class="btn btn-danger"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Enable account"
+                        >
+                            <i class="far fa-trash-alt"></i>
+                            <b>Delete account</b>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

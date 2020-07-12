@@ -11,5 +11,6 @@
     "/css/libs.css": "/css/libs.css",
     "/js/admin/jquery.min.js": "/js/admin/jquery.min.js",
     "/js/admin/bootstrap.bundle.min.js": "/js/admin/bootstrap.bundle.min.js",
+    "/js/admin/bs-custom-file-input.js": "/js/admin/bs-custom-file-input.js",
     "/js/admin/adminlte.min.js": "/js/admin/adminlte.min.js"
 }

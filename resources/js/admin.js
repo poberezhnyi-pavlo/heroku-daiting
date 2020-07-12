@@ -16,6 +16,9 @@ jQuery(document).ready(function() {
         $(this).bootstrapSwitch('state', $(this).prop('checked'));
     });
 
+    //Init AdminLTE file uploader
+    bsCustomFileInput.init();
+
     //Init SUNEDITOR editor
     const editor = SUNEDITOR.create((document.getElementById('suneditor') || 'suneditor'),{
         height : 'auto',

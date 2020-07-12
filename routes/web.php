@@ -42,7 +42,11 @@ Route::group(
         //Users
         Route::group(['prefix' => 'users'], static function () {
             Route::get('fetch', 'UserController@fetch');
-            Route::delete('deactivate/{id}', 'UserController@deactivate');
+            Route::delete('deactivate/{id}', 'UserController@deactivate')
+                ->name('deactivate');
+            Route::post('activate/{id}', 'UserController@activate')
+                ->name('activate');
+            Route::put('updateJson/{id}', 'UserController@updateJson');
         });
         Route::resource('users', 'UserController');
         Route::get('women', 'UserController@womanIndex')

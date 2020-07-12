@@ -10,10 +10,10 @@
                 :class="props.row.deleted_at"
                 slot="deleted_at"
                 slot-scope="props"
-                v-html="setStatus(props.row.deleted_at)"
+                v-html="showStatus(props.row.deleted_at)"
             ></span>
             <span slot="action" slot-scope="props">
-                <a :href="'/admin/users/'+props.row.id"
+                <a :href="'/admin/users/' + props.row.id"
                    class="text-primary"
                    data-toggle="tooltip"
                    data-placement="top"
@@ -21,7 +21,7 @@
                 >
                     <i class="fas fa-eye"></i>
                 </a>
-                <a :href="props.row.id"
+                <a :href="'/admin/users/' + props.row.id + '/edit'"
                    class="text-success"
                    data-toggle="tooltip"
                    data-placement="top"
@@ -31,13 +31,13 @@
                 </a>
                 <a
                     href="#"
-                    class="text-danger"
+                    :class="props.row.deleted_at ? 'text-success' : 'text-danger'"
                     data-toggle="tooltip"
                     data-placement="top"
-                    title="Disable account"
-                    @click.prevent="disable(props.row.id)"
+                    :title="props.row.deleted_at ? 'Enable account' : 'Disable account'"
+                    @click.prevent="setStatus(props.row.id, props.row.deleted_at)"
                 >
-                    <i class="fas fa-ban"></i>
+                    <i :class="props.row.deleted_at ? 'far fa-check-circle' : 'fas fa-ban'"></i>
                 </a>
             </span>
         </v-server-table>
@@ -68,6 +68,7 @@
                     'deleted_at',
                     'created_at',
                     'role',
+                    'user_type',
                     'action',
                 ],
                 options: {
@@ -76,6 +77,9 @@
                     headings: {
                         deleted_at: 'Status',
                     },
+                    hiddenColumns: [
+                        'user_type',
+                    ],
                     filterByColumn: true,
                     filterable: [
                         'name',
@@ -125,16 +129,18 @@
             }
         },
         methods: {
-            setStatus(data) {
+            showStatus(data) {
                 let active = '<i class="far fa-check-circle text-success"></i>';
                 let inactive = '<i class="fas fa-ban text-danger"></i>';
 
                 return data ? inactive : active;
             },
-            disable(id) {
-                return axios.delete(`/admin/users/deactivate/${id}`)
+            setStatus(id, data) {
+                return axios.put(`/admin/users/updateJson/${id}`, {
+                    deleted_at: data ? null : moment().format(),
+                })
                     .then((response) => {
-                        Vue.$toast.success('Profile deactivated successfully!')
+                        Vue.$toast.success('Profile updated successfully!')
                     })
                     .catch((error) => {
                         Vue.$toast.error('Something wrong.')

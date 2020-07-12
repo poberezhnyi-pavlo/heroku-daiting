@@ -10,10 +10,17 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset(Auth::user()->avatar) }}" class="img-circle elevation-2" alt="User Image">
+                <img
+                    @if(Str::startsWith(Auth::user()->avatar, 'http'))
+                        src="{{Auth::user()->avatar}}"
+                    @else
+                        src="{{ asset('storage/' . Auth::user()->avatar) }}"
+                    @endif
+                     class="img-fluid img-circle elevation-2"
+                     alt="User Image">
             </div>
             <div class="info">
-                <a href="users/{{ Auth::user()->getKey() }}" class="text-capitalize d-block">
+                <a href="{{route('users.show', Auth::user()->getKey())}}" class="text-capitalize d-block">
                     {{ Auth::user()->name }}
                 </a>
             </div>

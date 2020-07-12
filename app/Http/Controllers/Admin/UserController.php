@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\UserRequest;
 use App\Http\Requests\VueTableRequest;
 use App\Models\Man;
+use App\Models\User;
 use App\Models\Woman;
 use App\Services\Admin\UserService;
+use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -73,9 +77,29 @@ class UserController extends BaseController
         return response()->json($data);
     }
 
-    public function deactivate(int $id)
+    /**
+     * @param int $id
+     * @return RedirectResponse
+     * @throws Exception
+     */
+    public function deactivate(int $id): RedirectResponse
     {
-        return $this->service->disable($id);
+        $this->service->disable($id);
+
+        return redirect()->back()
+        ->with(['warning' => 'The user was deactivated']);
+    }
+
+    /**
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function activate(int $id): RedirectResponse
+    {
+        $this->service->restore($id);
+
+        return redirect()->back()
+            ->with(['success' => 'The user was activate']);
     }
 
     /**
@@ -107,7 +131,7 @@ class UserController extends BaseController
      */
     public function show(int $user): Response
     {
-        $result = $this->service->getItem($user);
+        $result = $this->service->getItem($user, true);
 
         return response()
             ->view('admin.users.show', ['user'=> $result]);
@@ -116,34 +140,77 @@ class UserController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
-    public function edit($id)
+    public function edit(int $id): Response
     {
-        //
+        /**
+         * @var User
+         */
+        $user = $this->service
+            ->getItem($id, true);
+
+        return response()->view('admin.users.edit', [
+            'user' => $user,
+            'roles' => $user->getRoles(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param  int  $id
-     * @return Response
+     * @param UserRequest $request
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, int $id): RedirectResponse
     {
-        //
+        $array = $request->except([
+            '_token',
+            '_method',
+        ]);
+
+        if ($request->hasFile('avatar')) {
+            $ext = $request->file('avatar')->getClientOriginalExtension();
+            $array['avatar'] = $request->file('avatar')
+                ->storeAs(
+                    'avatars',
+                    $request->user()->id . '.' . $ext, 'public'
+                );
+        }
+
+        $this->service->updateWhere($array, $id);
+
+        return redirect()->back()
+            ->with(['success' => 'The user was updated']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
-        //
+        $this->service->remove($id);
+
+        return redirect(route('users.index'))
+            ->with(['success' => 'The user was deleted successfully']);
+    }
+
+    /**
+     * @param Request $data
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function updateJson(Request $data, int $id): JsonResponse
+    {
+        $result = $this->service
+            ->updateWhere($data->all(), $id);
+
+        return response()->json($result);
     }
 }

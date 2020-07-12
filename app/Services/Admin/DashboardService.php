@@ -38,7 +38,7 @@ class DashboardService extends BaseService
                 'user_type' => Woman::class,
             ]),
             'videoCost' => $this->settingsRepository
-                ->getOneModel(['key' =>  'videoCostPerMinute']),
+                ->getOneModelWhere(['key' =>  'videoCostPerMinute']),
         ];
     }
 }

@@ -39,7 +39,10 @@ abstract class BaseRepository
      */
     public function forceDestroy($id): ?bool
     {
-        return $this->model->forceDelete($id);
+        return $this->model
+            ->withTrashed()
+            ->find($id)
+            ->forceDelete();
     }
 
     /**
@@ -50,23 +53,10 @@ abstract class BaseRepository
      */
     public function restore($id)
     {
-        return $this->model->restore($id);
-    }
-
-    /**
-     * @param int $id
-     * @param bool $trashed
-     * @return mixed
-     */
-    public function getById(int $id, bool $trashed = false)
-    {
-        $q = $this->model->where('id' , $id);
-
-        if ($trashed) {
-            $q->withTrashed();
-        }
-
-        return $q->first();
+        return $this->model
+            ->withTrashed()
+            ->find($id)
+            ->restore();
     }
 
     /**
@@ -82,21 +72,16 @@ abstract class BaseRepository
     }
 
     /**
-     * @return mixed
-     */
-    public function getAll()
-    {
-        return $this->model->get();
-    }
-
-    /**
      * @param array $data
      * @param array $where
      * @return bool
      */
-    public function updateModelWhere(array $data, array $where = []): bool
+    public function updateModelWhere(array $data, array $where): bool
     {
-        return $this->model->where($where)->update($data);
+        return $this->model
+            ->withTrashed()
+            ->where($where)
+            ->update($data);
     }
 
     /**
@@ -126,9 +111,32 @@ abstract class BaseRepository
      * @param array $where
      * @return mixed
      */
-    public function getOneModel(array $where = [])
+    public function getOneModelWhere(array $where = [])
     {
         return $this->model->firstWhere($where);
     }
 
+    /**
+     * @param int $id
+     * @param bool $trashed
+     * @return mixed
+     */
+    public function getById(int $id, bool $trashed = false)
+    {
+        $q = $this->model->where('id' , $id);
+
+        if ($trashed) {
+            $q->withTrashed();
+        }
+
+        return $q->first();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAll()
+    {
+        return $this->model->get();
+    }
 }

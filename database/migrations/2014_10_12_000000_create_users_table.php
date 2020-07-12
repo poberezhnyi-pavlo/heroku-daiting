@@ -24,7 +24,13 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->rememberToken();
             $table->nullableMorphs('user');
-            $table->enum('role', User::ROLES)
+            $table->enum('role', array_merge(
+                    User::ROLES,
+                    [
+                        User::ROLE_SUPER_ADMIN,
+                    ]
+                )
+            )
                 ->default(User::ROLE_USER);
             $table->timestamps();
             $table->softDeletes();

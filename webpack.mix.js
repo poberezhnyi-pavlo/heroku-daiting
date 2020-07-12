@@ -28,5 +28,6 @@ mix.js('resources/js/admin.js', 'public/js/admin/admin.js')
     ], 'public/css/libs.css')
     .copy('node_modules/admin-lte/plugins/jquery/jquery.min.js', 'public/js/admin/jquery.min.js')
     .copy('node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js', 'public/js/admin/bootstrap.bundle.min.js')
+    .copy('node_modules/admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.js', 'public/js/admin/bs-custom-file-input.js')
     .copy('node_modules/admin-lte/dist/js/adminlte.min.js', 'public/js/admin/adminlte.min.js')
     .sourceMaps(false, 'source-map');
