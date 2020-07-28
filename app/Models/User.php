@@ -18,6 +18,7 @@ use Illuminate\Notifications\Notifiable;
  * @property string status
  * @property string avatar
  * @property string name
+ * @property string last_name
  * @property string email
  * @property string phone
  * @property string user_type
@@ -42,12 +43,12 @@ class User extends Authenticatable
     public const ROLE_USER = 'user';
 
     /**
-     * @var array
+     * @var string[]
      */
     public const ROLES = [
-        self::ROLE_ADMIN,
-        self::ROLE_EDITOR,
         self::ROLE_USER,
+        self::ROLE_EDITOR,
+        self::ROLE_ADMIN,
     ];
 
     public const DEFAULT_AVATAR = 'pre-defined/user.png';
@@ -59,6 +60,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'last_name',
         'email',
         'password',
         'role',

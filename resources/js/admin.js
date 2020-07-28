@@ -16,6 +16,100 @@ jQuery(document).ready(function() {
         $(this).bootstrapSwitch('state', $(this).prop('checked'));
     });
 
+    //Date range picker
+    $('#reservationdate').datetimepicker({
+        format: 'DD/MM/YYYY',
+        viewMode: 'years',
+    });
+
+    //Initialize Select2 Elements
+    $('.select2').select2();
+
+    //Initialize sortable items
+    $('.sortable-list').sortable({
+        handle: '.sortable-button',
+        revert: 100,
+        cancel: '',
+    });
+
+    // Dynamic add fields
+    let youtubeIndex = 1;
+    let videoField = '<div class="input-group sortable-item">\n' +
+        '                <div class="input-group-prepend">\n' +
+        '                    <span class="input-group-text"><i class="fab fa-youtube"></i></span>\n' +
+        '                </div>\n' +
+        '                <input\n' +
+        '                    type="url"\n' +
+        '                    name="woman[video][' + youtubeIndex + ']"\n' +
+        '                    class="form-control"\n' +
+        '                    id="inputVideos"\n' +
+        '                    placeholder="Enter Youtube vide URL"\n' +
+        '                >\n' +
+        '                <div class="input-group-append">\n' +
+        '                    <button type="button" class="btn btn-danger btn-flat btn-remove">\n' +
+        '                        <i class="fas fa-minus-circle"></i>\n' +
+        '                    </button>\n' +
+        '                    <button type="button" class="btn btn-warning btn-flat sortable-button">\n' +
+        '                        <i class="fas fa-arrows-alt"></i>\n' +
+        '                    </button>\n' +
+        '                </div>\n' +
+        '            </div>';
+
+    $("#add-video-button").click(function(){
+        ++youtubeIndex;
+        $("#dynamicAddVideos").append(videoField);
+    });
+
+    let imageIndex = 1;
+    let imageField = '            <div class="input-group sortable-item">\n' +
+        '                <div class="input-group-prepend">\n' +
+        '                    <span class="input-group-text"><i class="far fa-image"></i></span>\n' +
+        '                    <img src="" class="img-preview" />' +
+        '                </div>\n' +
+        '                <div class="custom-file">\n' +
+        '                    <input type="file" class="custom-file-input" id="inputImages" name="woman[image][' + imageIndex + ']">\n' +
+        '                    <label class="custom-file-label" for="inputImages">Choose image...</label>\n' +
+        '                </div>\n' +
+        '\n' +
+        '                <div class="input-group-append">\n' +
+        '                    <button type="button" class="btn btn-danger btn-flat btn-remove">\n' +
+        '                        <i class="fas fa-minus-circle"></i>\n' +
+        '                    </button>\n' +
+        '                    <button type="button" class="btn btn-warning btn-flat sortable-button">\n' +
+        '                        <i class="fas fa-arrows-alt"></i>\n' +
+        '                    </button>\n' +
+        '                </div>\n' +
+        '            </div>';
+
+    $("#add-image-button").click(function(){
+        ++imageIndex;
+        bsCustomFileInput.destroy();
+        $("#dynamicAddImages").append(imageField);
+        bsCustomFileInput.init();
+    });
+
+    // Dynamic remove fields
+    $(document).on('click', '.btn-remove', function(){
+        $(this).parents('.sortable-item').remove();
+    });
+
+    // Add image preview to file upload fields
+    let readURL = (input) => {
+        if (input.files && input.files[0]) {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $(input).parents('.sortable-item')
+                    .find('.img-preview')
+                    .attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $(document).on('change', '#inputImages', function () {
+        readURL(this);
+    });
+
     //Init AdminLTE file uploader
     bsCustomFileInput.init();
 

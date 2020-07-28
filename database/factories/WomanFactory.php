@@ -15,23 +15,16 @@ $factory->define(Woman::class, static function (Faker $faker) {
         'eye_color' => $faker->randomElement(Woman::EYE_COLORS),
         'hair_color' => $faker->randomElement(Woman::HAIR_COLORS),
         'education' => $faker->sentence,
-        'langs' => $faker->word, //TODO: change when will be more info
+        'langs' => $faker->languageCode,
         'job' => $faker->company,
         'travel_countries' => $faker->country,
-        'vizes' => $faker->country,
+        'vises' => $faker->country,
         'creed' => $faker->word,
         'bad_habits' => $faker->sentence(),
         'ideal_man' => $faker->sentence(),
         'about_myself' => $faker->sentence(10),
         'city' => $faker->city,
-        'video_url' => $faker->randomElement([
-            'x7GkebUe6XQ',
-            'FYU-N2RWfso',
-            'xQ_IQS3VKjA',
-            'iXRSyj_mNis',
-            '6xJ27BtlM0c',
-        ]),
-        'is_show_in_gallery' => $faker->boolean,
+        'is_show_in_gallery' => $faker->boolean(30),
 
     ];
 });

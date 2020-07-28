@@ -86,7 +86,7 @@ abstract class BaseRepository
 
     /**
      * @param Model $model
-     * @param Request $request
+* @param Request $request
      * @return bool
      */
     public function updateModel(Model $model, Request $request): bool

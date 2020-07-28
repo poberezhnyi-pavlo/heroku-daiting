@@ -12,6 +12,21 @@
                 slot-scope="props"
                 v-html="showStatus(props.row.deleted_at)"
             ></span>
+            <div slot="afterLimit" class="ml-auto p-2">
+                <a href="/admin/users/create?type=woman" class="btn btn-success">
+                    <i class="fas fa-female"></i> Add woman
+                </a>
+                <a href="/admin/users/create?type=man" class="btn btn-dark">
+                    <i class="fas fa-male"></i> Add man
+                </a>
+                <a
+                    href="/admin/users/create?type=admin"
+                    class="btn btn-info"
+                    v-if="isAdmin()"
+                >
+                    <i class="fas fa-plus-circle"></i> Add admin user
+                </a>
+            </div>
             <span slot="action" slot-scope="props">
                 <a :href="'/admin/users/' + props.row.id"
                    class="text-primary"
@@ -55,9 +70,10 @@
             Event,
             ServerTable,
         },
-        props: [
-            'userType',
-        ],
+        props: {
+            userType: String,
+            currentUser: Object,
+        },
         data: function() {
             return {
                 url: '/admin/users/fetch',
@@ -149,18 +165,14 @@
                         this.$refs.table.refresh();
                     });
             },
+            isAdmin() {
+                return (this.currentUser.role === 'admin')
+                    || (this.currentUser.role === 'superAdmin');
+            },
         }
     }
 </script>
 
 <style>
-    .fade-enter-active,
-    .fade-leave-active {
-        transition: opacity .4s
-    }
 
-    .fade-enter,
-    .fade-leave-to {
-        opacity: 0
-    }
 </style>

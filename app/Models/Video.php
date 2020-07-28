@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class GalleryImage
+ * Class Video
  * @package App\Models
  * @property int order
- * @property string uri
+ * @property string youtube_video_id
  * @property int woman_id
  */
-class GalleryImage extends Model
+class Video extends Model
 {
     /**
      * @var string[]
      */
     protected $fillable = [
-        'uri',
         'order',
+        'youtube_video_id',
         'woman_id',
     ];
 }

@@ -26,13 +26,12 @@ class CreateWomenTable extends Migration
             $table->string('langs');
             $table->string('job');
             $table->text('travel_countries')->nullable();
-            $table->text('vizes')->nullable();
+            $table->text('vises')->nullable();
             $table->string('creed')->nullable()->comment('church');
             $table->text('bad_habits')->nullable();
             $table->text('ideal_man')->nullable();
             $table->text('about_myself');
             $table->string('city');
-            $table->string('video_url')->nullable();
             $table->boolean('is_show_in_gallery')->default(false);
             $table->timestamps();
             $table->softDeletes();

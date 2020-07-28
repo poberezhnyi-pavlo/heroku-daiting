@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\VueTableRequest;
 use App\Models\Man;
@@ -14,6 +15,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Arr;
+use Languages;
+use Countries;
 
 /**
  * Class UserController
@@ -39,7 +43,7 @@ class UserController extends BaseController
     {
         return response()
             ->view('admin.users.index', [
-                'type' => 'admin',
+                'type' => User::ROLE_ADMIN,
             ]);
     }
 
@@ -105,11 +109,22 @@ class UserController extends BaseController
     /**
      * Show the form for creating a new resource.
      *
+     * @param UserCreateRequest $request
      * @return Response
      */
-    public function create()
+    public function create(UserCreateRequest $request): Response
     {
-        //
+        return response()->view('admin.users.create', [
+            'roles' => array_diff( //remove User role
+                User::ROLES,
+                [User::ROLE_USER]
+            ),
+            'type' => $request->type,
+            'eyeColors' => Woman::EYE_COLORS,
+            'hairColors' => Woman::HAIR_COLORS,
+            'langs' => Languages::keyValue(),
+            'countries' => Countries::keyValue(),
+        ]);
     }
 
     /**
@@ -120,7 +135,7 @@ class UserController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

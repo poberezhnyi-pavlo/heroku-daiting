@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -20,17 +21,20 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property string langs
  * @property string job
  * @property string travel_countries
- * @property string vizes
+ * @property string vises
  * @property string creed
  * @property string bad_habits
  * @property string ideal_man
  * @property string about_myself
  * @property string city
- * @property string video_url
  * @property bool is_show_in_gallery
  * @property Carbon created_at
  * @property Carbon edited_at
  * @property Carbon deleted_at
+ *
+ * Relations
+ * @property Collection images
+ * @property Collection videos
  */
 class Woman extends Model
 {
@@ -45,7 +49,7 @@ class Woman extends Model
     /**
      * Eye colors.
      *
-     * @var array
+     * @var string[]
      */
     public const EYE_COLORS = [
         self::EYE_BROWN,
@@ -60,7 +64,7 @@ class Woman extends Model
     /**
      * Hair colors
      *
-     * @var array
+     * @var string[]
      */
     public const HAIR_BROWN = 'brown';
     public const HAIR_BLONDE = 'blonde';
@@ -82,6 +86,9 @@ class Woman extends Model
         self::HAIR_OTHER,
     ];
 
+    /**
+     * @var string[]
+     */
     public $fillable = [
         'birth_date',
         'amount_of_children',
@@ -93,13 +100,12 @@ class Woman extends Model
         'langs',
         'job',
         'travel_countries',
-        'vizes',
+        'vises',
         'creed',
         'bad_habits',
         'ideal_man',
         'about_myself',
         'city',
-        'video_url',
         'is_show_in_gallery',
     ];
 
@@ -122,5 +128,13 @@ class Woman extends Model
     public function images(): HasMany
     {
         return $this->hasMany(GalleryImage::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function videos(): HasMany
+    {
+        return $this->hasMany(Video::class);
     }
 }

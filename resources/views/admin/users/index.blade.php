@@ -5,5 +5,8 @@
 @endsection
 
 @section('content')
-    <users-component user-type="{{$type}}"></users-component>
+    <users-component
+        user-type="{{$type}}"
+        :current-user="{{json_encode(Auth::user())}}"
+    ></users-component>
 @endsection

@@ -29,6 +29,7 @@
     }
 }
 
+//Image fixes
 .box-profile .img-circle {
     height: 100px;
     object-fit: cover;
@@ -37,4 +38,22 @@
 .user-panel img {
     height: 100%;
     object-fit: cover;
+}
+
+//Hack for icon position on Select 2
+.select2-wrap.input-group {
+    -ms-flex-wrap: initial;
+    flex-wrap: initial;
+}
+
+.img-preview {
+    max-height: 38px;
+    width: fit-content;
+    max-width: 50px;
+    object-fit: cover;
+}
+
+#add-video-button,
+#add-image-button {
+    width: 42px;
 }
