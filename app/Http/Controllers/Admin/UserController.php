@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\VueTableRequest;
 use App\Models\Man;
 use App\Models\User;
@@ -130,10 +131,10 @@ class UserController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param UserStoreRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
         dd($request->all());
     }

@@ -12,6 +12,7 @@
                         class="form-control"
                         id="inputName"
                         placeholder="Enter a name"
+                        value="{{old('user.name')}}"
                     >
                 </div>
             </div>
@@ -29,6 +30,7 @@
                         class="form-control"
                         id="inputLastName"
                         placeholder="Enter a last name"
+                        value="{{old('user.last_name')}}"
                     >
                 </div>
             </div>
@@ -46,6 +48,7 @@
                         class="form-control"
                         id="inputEmail"
                         placeholder="Enter an E-mail"
+                        value="{{old('user.email')}}"
                     >
                 </div>
             </div>
@@ -63,6 +66,7 @@
                         class="form-control"
                         id="inputPhone"
                         placeholder="Enter an phone"
+                        value="{{old('user.phone')}}"
                     >
                 </div>
 
@@ -76,7 +80,13 @@
                         <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputAvatar" name="user[avatar]">
+                        <input
+                            type="file"
+                            class="custom-file-input"
+                            id="inputAvatar"
+                            name="user[avatar]"
+                            value="{{old('user.avatar')}}"
+                        >
                         <label class="custom-file-label" for="inputAvatar">Choose main photo</label>
                     </div>
                 </div>
@@ -92,7 +102,12 @@
                         </div>
                         <select id="inputRole" class="custom-select" name="user[role]">
                             @foreach($roles as $role)
-                                <option value="{{ $role }}">
+                                <option
+                                    value="{{ $role }}"
+                                    @if (old('user.role') === $role)
+                                        selected="selected"
+                                    @endif
+                                >
                                     {{ $role }}
                                 </option>
                             @endforeach
@@ -108,6 +123,9 @@
                     type="checkbox"
                     id="inputPublished"
                     name="user[deleted_at]"
+                    @if (old('user.deleted_at'))
+                        checked="checked"
+                    @endif
                     data-bootstrap-switch
                     data-off-color="danger"
                     data-on-color="success"
