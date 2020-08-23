@@ -65,14 +65,14 @@
         <label for="inputBirthDay" class="col-sm-2 col-form-label">Birth day</label>
         <div class="col-sm-10">
             <div class="input-group">
-                <div class="input-group date input-date" id="reservationdate" data-target-input="nearest">
-                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                <div class="input-group date input-date" id="datePicker" data-target-input="nearest">
+                    <div class="input-group-append" data-target="#datePicker" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
                     <input
                         type="text"
                         class="form-control datetimepicker-input"
-                        data-target="#reservationdate"
+                        data-target="#datePicker"
                         data-toggle="datetimepicker"
                         id="inputBirthDay"
                         name="birth_day"

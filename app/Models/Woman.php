@@ -75,6 +75,9 @@ class Woman extends Model
     public const HAIR_WHITE = 'white';
     public const HAIR_OTHER = 'other';
 
+    /**
+     * @var string[]
+     */
     public const HAIR_COLORS = [
         self::HAIR_BROWN,
         self::HAIR_BLONDE,
@@ -85,6 +88,13 @@ class Woman extends Model
         self::HAIR_WHITE,
         self::HAIR_OTHER,
     ];
+
+    /**
+     * @var string
+     */
+    public const IMAGES_PATH = 'women/images';
+
+    public const VIDEOS_PATH = 'women/videos';
 
     /**
      * @var string[]
@@ -107,6 +117,14 @@ class Woman extends Model
         'about_myself',
         'city',
         'is_show_in_gallery',
+    ];
+
+    /**
+     * @var string[]
+     */
+    protected $with = [
+        'videos',
+        'images',
     ];
 
     /**
@@ -136,5 +154,50 @@ class Woman extends Model
     public function videos(): HasMany
     {
         return $this->hasMany(Video::class);
+    }
+
+    /**
+     * @param array $langs
+     * @return void
+     */
+    public function setLangsAttribute(array $langs): void
+    {
+        $this->attributes['langs'] = json_encode($langs);
+    }
+
+    /**
+     * @param $langs
+     * @return false|string
+     */
+    public function getLangsAttribute(?string $langs)
+    {
+        return json_decode($langs, true);
+    }
+
+    /**
+     * @param array $countries
+     * @return void
+     */
+    public function setTravelCountriesAttribute(array $countries): void
+    {
+        $this->attributes['travel_countries'] = json_encode($countries);
+    }
+
+    /**
+     * @param $countries
+     * @return false|string
+     */
+    public function getTravelCountriesAttribute(?string $countries)
+    {
+        return json_decode($countries, true);
+    }
+
+    /**
+     * @param $value
+     * @return void
+     */
+    public function setIsShowInGalleryAttribute($value): void
+    {
+        $this->attributes['is_show_in_gallery'] = !empty($value);
     }
 }

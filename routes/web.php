@@ -36,8 +36,6 @@ Route::group(
     static function () {
         Route::get('/', 'DashboardController@index')
             ->name('admin.dashboard');
-//        Route::get('men', 'DashboardController@men')->name('admin.men');
-//        Route::resource('women', 'WomanController');
 
         //Users
         Route::group(['prefix' => 'users'], static function () {

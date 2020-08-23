@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserRequest;
-use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserStore\UserStoreRequest;
+use App\Http\Requests\UserStore\WomanStoreRequest;
 use App\Http\Requests\VueTableRequest;
 use App\Models\Man;
 use App\Models\User;
@@ -16,7 +17,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Arr;
 use Languages;
 use Countries;
 
@@ -132,11 +132,22 @@ class UserController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param UserStoreRequest $request
-     * @return Response
+     * @return RedirectResponse
      */
-    public function store(UserStoreRequest $request)
+
+    public function store(UserStoreRequest $request): RedirectResponse
     {
-        dd($request->all());
+        $data = $request->only([
+            'user',
+            'man',
+            'woman',
+        ]);
+
+        $user = $this->service->storeUser($data);
+
+        return redirect()
+            ->route('users.show', [$user])
+            ->with(['success' => 'The user was created']);
     }
 
     /**

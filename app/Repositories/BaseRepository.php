@@ -6,7 +6,9 @@ use App\Traits\VueTableRepositoryTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 /**
  * Class BaseRepository
@@ -138,5 +140,30 @@ abstract class BaseRepository
     public function getAll()
     {
         return $this->model->get();
+    }
+
+    /**
+     * @param array $fields
+     * @return Model
+     */
+    public function store(array $fields): Model
+    {
+        return $this->model->create($fields);
+    }
+
+    /**
+     * @param UploadedFile $img
+     * @param string $path
+     * @return mixed
+     */
+    public function storeImage(UploadedFile $img, string $path=''): ?string
+    {
+        $ext = $img->getClientOriginalExtension();
+
+        return $img->storeAs(
+            $path,
+            Str::random(16) . '.' . $ext,
+            'public'
+        );
     }
 }

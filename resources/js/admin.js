@@ -16,9 +16,9 @@ jQuery(document).ready(function() {
         $(this).bootstrapSwitch('state', $(this).prop('checked'));
     });
 
-    //Date range picker
-    $('#reservationdate').datetimepicker({
-        format: 'DD/MM/YYYY',
+    //Date picker
+    $('#datePicker').datetimepicker({
+        format: 'DD-MM-YYYY',
         viewMode: 'years',
     });
 

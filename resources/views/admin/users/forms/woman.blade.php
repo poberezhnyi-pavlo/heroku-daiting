@@ -3,17 +3,18 @@
         <label for="inputBirthDay" class="col-sm-2 col-form-label">Birth day</label>
         <div class="col-sm-10">
             <div class="input-group">
-                <div class="input-group date input-date" id="reservationdate" data-target-input="nearest">
-                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                <div class="input-group date input-date" id="datePicker" data-target-input="nearest">
+                    <div class="input-group-append" data-target="#datePicker" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
                     <input
                         type="text"
                         class="form-control datetimepicker-input"
-                        data-target="#reservationdate"
+                        data-target="#datePicker"
                         data-toggle="datetimepicker"
                         id="inputBirthDay"
                         name="woman[birth_day]"
+                        value="{{old('woman.birth_day')}}"
                     />
                 </div>
             </div>
@@ -29,7 +30,7 @@
                 <input
                     type="number"
                     min="0"
-                    value="0"
+                    value="{{old('woman.amount_of_children', 0)}}"
                     step="1"
                     name="woman[amount_of_children]"
                     class="form-control"
@@ -49,7 +50,7 @@
                 <input
                     type="number"
                     min="0"
-                    value="0"
+                    value="{{old('woman.height', 0)}}"
                     step="1"
                     name="woman[height]"
                     class="form-control"
@@ -68,7 +69,7 @@
                 <input
                     type="number"
                     min="0"
-                    value="0"
+                    value="{{old('woman.weight', 0)}}"
                     step="1"
                     name="woman[weight]"
                     class="form-control"
@@ -86,7 +87,12 @@
                 </div>
                 <select id="inputEveColor" class="custom-select" name="woman[eye_color]">
                     @foreach($eyeColors as $eyeColor)
-                        <option value="{{ $eyeColor }}">
+                        <option
+                            value="{{ $eyeColor }}"
+                            @if (old('woman.eye_color') === $eyeColor)
+                                selected="selected"
+                            @endif
+                        >
                             {{ $eyeColor }}
                         </option>
                     @endforeach
@@ -103,7 +109,12 @@
                 </div>
                 <select id="inputHairColor" class="custom-select" name="woman[hair_color]">
                     @foreach($hairColors as $hairColor)
-                        <option value="{{ $hairColor }}">
+                        <option
+                            value="{{ $hairColor }}"
+                            @if (old('woman.hair_color') === $hairColor)
+                                selected="selected"
+                            @endif
+                        >
                             {{ $hairColor }}
                         </option>
                     @endforeach
@@ -124,6 +135,7 @@
                     class="form-control"
                     id="inputEducation"
                     placeholder="Enter education"
+                    value="{{old('woman.education')}}"
                 >
             </div>
         </div>
@@ -141,6 +153,7 @@
                     class="form-control"
                     id="inputJob"
                     placeholder="Enter current job"
+                    value="{{old('woman.job')}}"
                 >
             </div>
         </div>
@@ -162,7 +175,12 @@
                         style="width: 100%;"
                     >
                         @foreach($langs as $lang)
-                            <option value="{{ $lang->key }}">
+                            <option
+                                value="{{ $lang->key }}"
+                                @if (old('woman.langs') === $lang->key)
+                                    selected="selected"
+                                @endif
+                            >
                                 {{$lang->key}} - {{ $lang->value }}
                             </option>
                         @endforeach
@@ -189,7 +207,12 @@
                         data-dropdown-css-class="select2-purple"
                     >
                         @foreach($countries as $country)
-                            <option value="{{ $country->key }}">
+                            <option
+                                value="{{ $country->key }}"
+                                @if (old('woman.travel_countries') === $country->key)
+                                    selected="selected"
+                                @endif
+                            >
                                 {{$country->key}} - {{ $country->value }}
                             </option>
                         @endforeach
@@ -211,6 +234,7 @@
                     class="form-control"
                     id="inputVises"
                     placeholder="Enter your vises"
+                    value="{{old('woman.vises')}}"
                 >
             </div>
         </div>
@@ -228,6 +252,7 @@
                     class="form-control"
                     id="inputCreed"
                     placeholder="Enter your creed"
+                    value="{{old('woman.creed')}}"
                 >
             </div>
         </div>
@@ -245,6 +270,7 @@
                     class="form-control"
                     id="inputBadHabits"
                     placeholder="Enter your bad habits"
+                    value="{{old('woman.bad_habits')}}"
                 >
             </div>
         </div>
@@ -262,7 +288,7 @@
                     class="form-control"
                     id="inputIdealMan"
                     placeholder="Please describe your ideal man"
-                ></textarea>
+                >{{old('woman.ideal_man')}}</textarea>
             </div>
         </div>
     </div>
@@ -279,7 +305,7 @@
                     class="form-control"
                     id="inputAboutMyself"
                     placeholder="Describe about myself"
-                ></textarea>
+                >{{old('woman.about_myself')}}</textarea>
             </div>
         </div>
     </div>
@@ -296,6 +322,7 @@
                     class="form-control"
                     id="inputCity"
                     placeholder="Enter city"
+                    value="{{old('woman.city')}}"
                 >
             </div>
         </div>
@@ -331,7 +358,7 @@
             <div class="input-group sortable-item">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="far fa-image"></i></span>
-                    <img src="" class="img-preview"  />
+                    <img src="" class="img-preview"  alt=""/>
                 </div>
                 <div class="custom-file">
                     <input
@@ -364,6 +391,9 @@
                 data-bootstrap-switch
                 data-off-color="danger"
                 data-on-color="success"
+                @if (old('user.is_show_in_gallery'))
+                    checked="checked"
+                @endif
             >
         </div>
     </div>

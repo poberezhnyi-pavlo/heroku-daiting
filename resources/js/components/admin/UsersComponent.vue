@@ -139,6 +139,10 @@
                             return moment(row.created_at).format('DD-MM-YYYY')
                         },
                     },
+                    orderBy: {
+                        ascending: false,
+                        column: 'id',
+                    },
                     perPage: 25,
                     debounce: 1000,
                 },

@@ -51,7 +51,15 @@ class User extends Authenticatable
         self::ROLE_ADMIN,
     ];
 
+    /**
+     * @var string
+     */
     public const DEFAULT_AVATAR = 'pre-defined/user.png';
+
+    /**
+     * @var string
+     */
+    public const AVATAR_PATH = 'avatars';
 
     /**
      * The attributes that are mass assignable.
@@ -75,6 +83,10 @@ class User extends Authenticatable
     protected $guarded = [
         '_token',
         '_method',
+    ];
+
+    protected $with = [
+        'user',
     ];
 
     /**
@@ -178,6 +190,15 @@ class User extends Authenticatable
     {
         return $url ?: self::DEFAULT_AVATAR;
     }
+
+    /**
+     * @param $value
+     */
+//    public function setDeletedAtAttribute($value): void
+//    {
+//        dd($value ? null : new Carbon());
+//        $this->attributes['deleted_at'] = $value ? null : new Carbon();
+//    }
 
     /**
      * Scope a query by User type.
