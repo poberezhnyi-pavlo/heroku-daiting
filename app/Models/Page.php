@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 
 /**
  * Class Page
@@ -15,11 +17,22 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon created_at
  * @property Carbon edited_at
  */
-class Page extends Model
+class Page extends Model implements TranslatableContract
 {
-    public $fillable = [
+    use Translatable;
+
+    /**
+     * @var string[]
+     */
+    public $translatedAttributes = [
         'title',
         'body',
+    ];
+
+    /**
+     * @var string[]
+     */
+    protected $fillable = [
         'published',
         'slug',
     ];

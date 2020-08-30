@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Astrotomic\Translatable\Validation\RuleFactory;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
@@ -39,15 +40,16 @@ class PageRequest extends FormRequest
      */
     public function rules():array
     {
-        return [
-            'body' => [
+//        dd($this);
+        return RuleFactory::make([
+            '%body%' => [
                 'required',
                 'string',
             ],
-            'title' => [
+            '%title%' => [
                 'required',
                 'string',
             ],
-        ];
+        ]);
     }
 }
