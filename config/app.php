@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -228,6 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Languages' => PeterColes\Languages\LanguagesFacade::class,
         'Countries' => PeterColes\Countries\CountriesFacade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

@@ -2,13 +2,17 @@
 
 namespace App\Repositories;
 
+use App\Models\Woman;
 use App\Traits\VueTableRepositoryTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image as Picture;
+use Intervention\Image\Image;
 
 /**
  * Class BaseRepository
@@ -131,7 +135,7 @@ abstract class BaseRepository
             $q->withTrashed();
         }
 
-        return $q->first();
+        return $q->firstOrFail();
     }
 
     /**
@@ -165,5 +169,21 @@ abstract class BaseRepository
             Str::random(16) . '.' . $ext,
             'public'
         );
+    }
+
+    /**
+     * @param string $imgPath
+     * @param string $watermarkPath
+     * @return bool
+     */
+    protected function setImageWatermark(string $imgPath, string $watermarkPath): bool
+    {
+        $waterMark = Storage::disk('public')->url($watermarkPath);
+        $fullImgPath = Storage::disk('public')->url($imgPath);
+        $image = Picture::make($fullImgPath);
+
+        $image->insert($waterMark, 'bottom-right', 5, 5);
+
+        return Storage::disk('public')->put( $imgPath, $image->stream());
     }
 }

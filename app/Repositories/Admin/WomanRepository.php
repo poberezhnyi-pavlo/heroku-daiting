@@ -46,6 +46,11 @@ class WomanRepository extends BaseRepository
             foreach ($data['image'] as $key=>$image) {
                 $path = $this->storeImage($image, Woman::IMAGES_PATH);
 
+                $this->setImageWatermark(
+                    $path,
+                    env('WATERMARK_PATH')
+                );
+
                 $woman->images()->create([
                     'order' => $key,
                     'uri' => $path,
