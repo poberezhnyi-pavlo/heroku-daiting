@@ -25,6 +25,5 @@ $factory->define(Woman::class, static function (Faker $faker) {
         'about_myself' => $faker->sentence(10),
         'city' => $faker->city,
         'is_show_in_gallery' => $faker->boolean(30),
-
     ];
 });

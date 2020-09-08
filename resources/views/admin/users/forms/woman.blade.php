@@ -13,7 +13,7 @@
                         data-target="#datePicker"
                         data-toggle="datetimepicker"
                         id="inputBirthDay"
-                        name="woman[birth_day]"
+                        name="woman[birth_date]"
                         value="{{old('woman.birth_day')}}"
                     />
                 </div>
@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="inputHeight" class="col-sm-2 col-form-label">Height (Cm)</label>
+        <label for="inputHeight" class="col-sm-2 col-form-label">Height</label>
         <div class="col-sm-10">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -56,11 +56,14 @@
                     class="form-control"
                     id="inputHeight"
                 >
+                <div class="input-group-append">
+                    <span class="input-group-text">Cm</span>
+                </div>
             </div>
         </div>
     </div>
     <div class="form-group row">
-        <label for="inputWeight" class="col-sm-2 col-form-label">Weight (Kg)</label>
+        <label for="inputWeight" class="col-sm-2 col-form-label">Weight</label>
         <div class="col-sm-10">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -75,6 +78,9 @@
                     class="form-control"
                     id="inputWeight"
                 >
+                <div class="input-group-append">
+                    <span class="input-group-text">Kg</span>
+                </div>
             </div>
         </div>
     </div>
@@ -208,7 +214,7 @@
                     >
                         @foreach($countries as $country)
                             <option
-                                value="{{ $country->key }}"
+                                value="{{$country->key}} - {{ $country->value }}"
                                 @if (old('woman.travel_countries') === $country->key)
                                     selected="selected"
                                 @endif

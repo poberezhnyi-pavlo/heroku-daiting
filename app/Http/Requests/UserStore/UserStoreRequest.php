@@ -98,7 +98,7 @@ class UserStoreRequest extends FormRequest
     private function getWomanRules(): array
     {
         return [
-            'woman.birth_day' => [
+            'woman.birth_date' => [
                 'date',
                 'nullable',
             ],
