@@ -29,34 +29,41 @@ jQuery(document).ready(function() {
     $('.sortable-list').sortable({
         handle: '.sortable-button',
         revert: 100,
+        axis: 'y',
         cancel: '',
+    }).on( 'sortstop', function( event, ui ) {
+        $(this).children().each(function (index, item) {
+            $(item).find('input').each(function() {
+                this.name = this.name.replace(/\[[0-9]+\]/g, '[' + index + ']');
+            });
+        });
     });
 
     // Dynamic add fields
-    let youtubeIndex = 1;
-    let videoField = '<div class="input-group sortable-item">\n' +
-        '                <div class="input-group-prepend">\n' +
-        '                    <span class="input-group-text"><i class="fab fa-youtube"></i></span>\n' +
-        '                </div>\n' +
-        '                <input\n' +
-        '                    type="url"\n' +
-        '                    name="woman[video][' + youtubeIndex + ']"\n' +
-        '                    class="form-control"\n' +
-        '                    id="inputVideos"\n' +
-        '                    placeholder="Enter Youtube vide URL"\n' +
-        '                >\n' +
-        '                <div class="input-group-append">\n' +
-        '                    <button type="button" class="btn btn-danger btn-flat btn-remove">\n' +
-        '                        <i class="fas fa-minus-circle"></i>\n' +
-        '                    </button>\n' +
-        '                    <button type="button" class="btn btn-warning btn-flat sortable-button">\n' +
-        '                        <i class="fas fa-arrows-alt"></i>\n' +
-        '                    </button>\n' +
-        '                </div>\n' +
-        '            </div>';
-
+    let youtubeIndex = $( "#dynamicAddVideos .sortable-item" ).length;
     $("#add-video-button").click(function(){
         ++youtubeIndex;
+
+        let videoField = '<div class="input-group sortable-item">\n' +
+            '                <div class="input-group-prepend">\n' +
+            '                    <span class="input-group-text"><i class="fab fa-youtube"></i></span>\n' +
+            '                </div>\n' +
+            '                <input\n' +
+            '                    type="url"\n' +
+            '                    name="woman[video][' + youtubeIndex + ']"\n' +
+            '                    class="form-control"\n' +
+            '                    placeholder="Enter Youtube vide URL"\n' +
+            '                >\n' +
+            '                <div class="input-group-append">\n' +
+            '                    <button type="button" class="btn btn-danger btn-flat btn-remove">\n' +
+            '                        <i class="fas fa-minus-circle"></i>\n' +
+            '                    </button>\n' +
+            '                    <button type="button" class="btn btn-warning btn-flat sortable-button">\n' +
+            '                        <i class="fas fa-arrows-alt"></i>\n' +
+            '                    </button>\n' +
+            '                </div>\n' +
+            '            </div>';
+
         $("#dynamicAddVideos").append(videoField);
     });
 

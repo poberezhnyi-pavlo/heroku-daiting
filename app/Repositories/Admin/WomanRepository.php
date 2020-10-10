@@ -6,6 +6,7 @@ use App\Models\Woman;
 use App\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use App\Helpers\ImageHelper;
 
 /**
  * Class WomanRepository
@@ -13,13 +14,20 @@ use Illuminate\Support\Arr;
  */
 class WomanRepository extends BaseRepository
 {
+    protected $videoRepository;
+
     /**
      * WomanRepository constructor.
      * @param Woman $woman
+     * @param VideoRepository $videoRepository
      */
-    public function __construct(Woman $woman)
+    public function __construct(
+        Woman $woman,
+        VideoRepository $videoRepository
+    )
     {
         $this->model = $woman;
+        $this->videoRepository = $videoRepository;
     }
 
     /**
@@ -44,9 +52,9 @@ class WomanRepository extends BaseRepository
 
         if (Arr::exists($data, 'image')) {
             foreach ($data['image'] as $key=>$image) {
-                $path = $this->storeImage($image, Woman::IMAGES_PATH);
+                $path = ImageHelper::storeImage($image, Woman::IMAGES_PATH);
 
-                $this->setImageWatermark(
+                ImageHelper::setImageWatermark(
                     $path,
                     env('WATERMARK_PATH')
                 );
@@ -59,5 +67,29 @@ class WomanRepository extends BaseRepository
         }
 
         return $woman;
+    }
+
+    /**
+     * @param array $data
+     * @param Woman $woman
+     * @return bool
+     */
+    public function updateWoman(array $data, Woman $woman): bool
+    {
+        $woman->videos()->delete();
+
+        if (Arr::exists($data, 'video')) {
+            foreach ($data['video'] as $key=>$video) {
+                if (empty($video)) {
+                    continue;
+                }
+                $woman->videos()->create([
+                    'order' => $key,
+                    'youtube_video_id' => $video,
+                ]);
+            }
+        }
+
+        return $woman->update($data);
     }
 }

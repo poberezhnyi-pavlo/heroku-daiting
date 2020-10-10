@@ -181,6 +181,10 @@ class UserController extends BaseController
         return response()->view('admin.users.edit', [
             'user' => $user,
             'roles' => $user->getRoles(),
+            'eyeColors' => Woman::EYE_COLORS,
+            'hairColors' => Woman::HAIR_COLORS,
+            'langs' => Languages::keyValue(),
+            'countries' => Countries::keyValue(),
         ]);
     }
 
@@ -188,26 +192,17 @@ class UserController extends BaseController
      * Update the specified resource in storage.
      *
      * @param UserRequest $request
-     * @param int $id
+     * @param int $user
      * @return RedirectResponse
      */
-    public function update(UserRequest $request, int $id): RedirectResponse
+    public function update(UserRequest $request, int $user): RedirectResponse
     {
-        $array = $request->except([
-            '_token',
-            '_method',
+        $array = $request->only([
+            'user',
+            'man',
+            'woman',
         ]);
-
-        if ($request->hasFile('avatar')) {
-            $ext = $request->file('avatar')->getClientOriginalExtension();
-            $array['avatar'] = $request->file('avatar')
-                ->storeAs(
-                    'avatars',
-                    $request->user()->id . '.' . $ext, 'public'
-                );
-        }
-
-        $this->service->updateWhere($array, $id);
+        $this->service->updateUser($array, $user);
 
         return redirect()->back()
             ->with(['success' => 'The user was updated']);
@@ -216,13 +211,13 @@ class UserController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param int $userId
      * @return RedirectResponse
      * @throws Exception
      */
-    public function destroy($id): RedirectResponse
+    public function destroy(int $userId): RedirectResponse
     {
-        $this->service->remove($id);
+        $this->service->destroyUser($userId);
 
         return redirect(route('users.index'))
             ->with(['success' => 'The user was deleted successfully']);

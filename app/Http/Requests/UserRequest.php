@@ -28,10 +28,11 @@ class UserRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        $deleted = $this->get('deleted_at') ? null : Carbon::now();
+        $user = $this->input('user');
+        $user['deleted_at'] = $this->input('user.deleted_at') ? null : now();
 
-        $this->merge([
-            'deleted_at' => $deleted,
+        $this->request->add([
+            'user' => $user,
         ]);
     }
 

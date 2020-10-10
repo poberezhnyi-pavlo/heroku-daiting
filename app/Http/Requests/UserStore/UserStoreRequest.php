@@ -31,7 +31,7 @@ class UserStoreRequest extends FormRequest
     {
         // intercept and change data on 'deleted_at' field
         $user = $this->input('user');
-        $user['deleted_at']= $this->input('user.deleted_at') ? null : Carbon::now();
+        $user['deleted_at'] = $this->input('user.deleted_at') ? null : now();
 
         $this->request->add([
             'user' => $user,

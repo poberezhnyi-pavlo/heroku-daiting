@@ -2,6 +2,7 @@
 
 namespace App\Services\Admin;
 
+use App\Models\User;
 use App\Repositories\Admin\ManRepository;
 use App\Repositories\Admin\UserRepository;
 use App\Repositories\Admin\WomanRepository;
@@ -72,8 +73,36 @@ class UserService extends BaseService
         return $user;
     }
 
-    public function updateUser(array $request)
+    /**
+     * @param array $data
+     * @param int $userId
+     * @return User
+     */
+    public function updateUser(array $data, int $userId): User
     {
+        /**
+         * @var User
+         */
+        $user = $this->repository->getById($userId, true);
 
+        $updatedUser = $this->repository
+            ->updateUser($data['user'], $user);
+
+        if (array_key_exists('woman', $data)) {
+            $this->womanRepository->updateWoman($data['woman'], $user->user);
+        }
+
+        return $updatedUser;
+    }
+
+    public function destroyUser(int $userId)
+    {
+        /**
+         * @var User
+         */
+        $user = $this->repository->getById($userId, true);
+
+        return $this->repository
+            ->forceDeleteUser($user);
     }
 }

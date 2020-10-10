@@ -141,16 +141,20 @@
                         </li>
                         <li class="list-group-item">
                             <b>Languages:</b> <span class="float-right">
-                                @foreach(Languages::lookup($user->user->langs) as $lang)
-                                    <span class="badge badge-info">{{$lang}}</span>
-                                @endforeach
+                                @isset($user->user->langs)
+                                    @foreach(Languages::lookup($user->user->langs) as $lang)
+                                        <span class="badge badge-info">{{$lang}}</span>
+                                    @endforeach
+                                @endisset
                             </span>
                         </li>
                         <li class="list-group-item">
                             <b>Travel countries:</b> <span class="float-right">
-                                @foreach($user->user->travel_countries as $country)
-                                    <span class="badge badge-warning">{{$country}}</span>
-                                @endforeach
+                                @isset($user->user->travel_countries)
+                                    @foreach($user->user->travel_countries as $country)
+                                        <span class="badge badge-warning">{{$country}}</span>
+                                    @endforeach
+                                @endisset
                             </span>
                         </li>
                         <li class="list-group-item">
@@ -205,7 +209,7 @@
                             class="btn btn-danger"
                             data-toggle="tooltip"
                             data-placement="top"
-                            title="Enable account"
+                            title="Delete account"
                         >
                             <i class="far fa-trash-alt"></i>
                             <b>Delete account</b>

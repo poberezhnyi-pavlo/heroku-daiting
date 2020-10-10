@@ -119,6 +119,10 @@ class Woman extends Model
         'is_show_in_gallery',
     ];
 
+    protected $casts = [
+        'birth_date' => 'date',
+    ];
+
     /**
      * @var string[]
      */
@@ -145,7 +149,8 @@ class Woman extends Model
      */
     public function images(): HasMany
     {
-        return $this->hasMany(GalleryImage::class);
+        return $this->hasMany(GalleryImage::class)
+            ->orderBy('order');
     }
 
     /**
@@ -153,7 +158,9 @@ class Woman extends Model
      */
     public function videos(): HasMany
     {
-        return $this->hasMany(Video::class);
+        return $this
+            ->hasMany(Video::class)
+            ->orderBy('order');
     }
 
     /**

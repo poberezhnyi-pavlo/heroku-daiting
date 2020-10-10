@@ -2,17 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Models\Woman;
 use App\Traits\VueTableRepositoryTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image as Picture;
-use Intervention\Image\Image;
 
 /**
  * Class BaseRepository
@@ -32,7 +26,7 @@ abstract class BaseRepository
      * @return bool|null
      * @throws Exception
      */
-    public function remove($id): ?bool
+    public function remove(int $id): ?bool
     {
         return $this->model->destroy($id);
     }
@@ -43,12 +37,28 @@ abstract class BaseRepository
      * @param int $id
      * @return bool|null
      */
-    public function forceDestroy($id): ?bool
+    public function forceDestroy(int $id): ?bool
     {
-        return $this->model
-            ->withTrashed()
-            ->find($id)
-            ->forceDelete();
+        $model = $this->model::withTrashed()->findOrFail($id);
+        if(!$model->trashed()){
+            return $model->delete();
+        }
+
+        return $model->forceDelete();
+    }
+
+    /**
+     * @param Model $model
+     * @return bool|null
+     * @throws Exception
+     */
+    public function forceDestroyByModel(Model $model): ?bool
+    {
+        if(!$model->trashed()){
+            return $model->delete();
+        }
+
+        return $model->forceDelete();
     }
 
     /**
@@ -57,7 +67,7 @@ abstract class BaseRepository
      * @param int $id
      * @return mixed
      */
-    public function restore($id)
+    public function restore(int $id)
     {
         return $this->model
             ->withTrashed()
@@ -92,7 +102,7 @@ abstract class BaseRepository
 
     /**
      * @param Model $model
-* @param Request $request
+     * @param Request $request
      * @return bool
      */
     public function updateModel(Model $model, Request $request): bool
@@ -153,37 +163,5 @@ abstract class BaseRepository
     public function store(array $fields): Model
     {
         return $this->model->create($fields);
-    }
-
-    /**
-     * @param UploadedFile $img
-     * @param string $path
-     * @return mixed
-     */
-    public function storeImage(UploadedFile $img, string $path=''): ?string
-    {
-        $ext = $img->getClientOriginalExtension();
-
-        return $img->storeAs(
-            $path,
-            Str::random(16) . '.' . $ext,
-            'public'
-        );
-    }
-
-    /**
-     * @param string $imgPath
-     * @param string $watermarkPath
-     * @return bool
-     */
-    protected function setImageWatermark(string $imgPath, string $watermarkPath): bool
-    {
-        $waterMark = Storage::disk('public')->url($watermarkPath);
-        $fullImgPath = Storage::disk('public')->url($imgPath);
-        $image = Picture::make($fullImgPath);
-
-        $image->insert($waterMark, 'bottom-right', 5, 5);
-
-        return Storage::disk('public')->put( $imgPath, $image->stream());
     }
 }
