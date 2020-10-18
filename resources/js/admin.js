@@ -29,7 +29,6 @@ jQuery(document).ready(function() {
     $('.sortable-list').sortable({
         handle: '.sortable-button',
         revert: 100,
-        axis: 'y',
         cancel: '',
     }).on( 'sortstop', function( event, ui ) {
         $(this).children().each(function (index, item) {
@@ -68,7 +67,7 @@ jQuery(document).ready(function() {
     });
 
     let imageIndex = 1;
-    let imageField = '            <div class="input-group sortable-item">\n' +
+    let imageField = '<div class="input-group sortable-item">\n' +
         '                <div class="input-group-prepend">\n' +
         '                    <span class="input-group-text"><i class="far fa-image"></i></span>\n' +
         '                    <img src="" class="img-preview" />' +

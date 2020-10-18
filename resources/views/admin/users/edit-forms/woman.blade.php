@@ -401,49 +401,67 @@
     </div>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Gallery images</label>
-        <div class="col-sm-10 sortable-list" id="dynamicAddImages">
-            <div class="input-group sortable-item">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="far fa-image"></i></span>
-                    <img src="" class="img-preview"  alt=""/>
-                </div>
-                <div class="custom-file">
-                    <input
-                        type="file"
-                        class="custom-file-input"
-                        id="inputImages"
-                        name="woman[image][0]"
-                    >
-                    <label class="custom-file-label" for="inputImages">Choose image...</label>
-                </div>
+        <div class="col-sm-10">
+{{--            <div class="sortable-list thumbnail-wrap" id="dynamicOrderImages">--}}
+{{--                @foreach($user->user->images as $image)--}}
+{{--                    <div class="sortable-item">--}}
+{{--                        <img--}}
+{{--                            src="{{asset($image->uri)}}"--}}
+{{--                            alt="image"--}}
+{{--                            class="img-thumbnail sortable-button"--}}
+{{--                        >--}}
+{{--                    </div>--}}
+{{--                @endforeach--}}
+{{--            </div>--}}
+            <div class="thumbnail-wrap">
+                <draggable-images
+                    :images="{{$user->user->images}}"
+                ></draggable-images>
+            </div>
+            <div class="sortable-list" id="dynamicAddImages">
+                <div class="input-group sortable-item">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-image"></i></span>
+                        <img src="" class="img-preview"  alt=""/>
+                    </div>
+                    <div class="custom-file">
+                        <input
+                            type="file"
+                            class="custom-file-input"
+                            id="inputImages"
+                            name="woman[image][0]"
+                        >
+                        <label class="custom-file-label" for="inputImages">Choose image...</label>
+                    </div>
 
-                <div class="input-group-append">
-                    <button type="button" class="btn btn-info btn-flat" id="add-image-button">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <button type="button" class="btn btn-warning btn-flat sortable-button">
-                        <i class="fas fa-arrows-alt"></i>
-                    </button>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-info btn-flat" id="add-image-button">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-flat sortable-button">
+                            <i class="fas fa-arrows-alt"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="form-group row">
-        <label for="inputPromoted" class="col-sm-2 col-form-label">Show in frontpage gallery</label>
-        <div class="col-sm-10">
-            <input
-                type="checkbox"
-                id="inputPromoted"
-                name="woman[is_show_in_gallery]"
-                @if ($user->user->is_show_in_gallery))
-                checked="checked"
-                @endif
-                data-bootstrap-switch
-                data-off-color="danger"
-                data-on-color="success"
-            >
-        </div>
-    </div>
+{{--    <div class="form-group row">--}}
+{{--        <label for="inputPromoted" class="col-sm-2 col-form-label">Show in frontpage gallery</label>--}}
+{{--        <div class="col-sm-10">--}}
+{{--            <input--}}
+{{--                type="checkbox"--}}
+{{--                id="inputPromoted"--}}
+{{--                name="woman[is_show_in_gallery]"--}}
+{{--                @if ($user->user->is_show_in_gallery))--}}
+{{--                checked="checked"--}}
+{{--                @endif--}}
+{{--                data-bootstrap-switch--}}
+{{--                data-off-color="danger"--}}
+{{--                data-on-color="success"--}}
+{{--            >--}}
+{{--        </div>--}}
+{{--    </div>--}}
 </div>
 <!-- /.card-body -->
 

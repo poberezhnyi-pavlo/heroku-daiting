@@ -27,6 +27,10 @@
         margin-left: 10px;
         cursor: pointer;
     }
+
+    &__created_at-filter-wrapper {
+        cursor: pointer;
+    }
 }
 
 //Image fixes
@@ -57,7 +61,6 @@
 #add-image-button {
     width: 42px;
 }
-
-.VueTables__created_at-filter-wrapper {
+.sortable-button {
     cursor: pointer;
 }

@@ -90,6 +90,22 @@ class WomanRepository extends BaseRepository
             }
         }
 
+        if (Arr::exists($data, 'image')) {
+            foreach ($data['image'] as $key=>$image) {
+                $path = ImageHelper::storeImage($image, Woman::IMAGES_PATH);
+
+                ImageHelper::setImageWatermark(
+                    $path,
+                    env('WATERMARK_PATH')
+                );
+
+                $woman->images()->create([
+                    'order' => $key,
+                    'uri' => $path,
+                ]);
+            }
+        }
+
         return $woman->update($data);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class GalleryImage
@@ -21,4 +23,13 @@ class GalleryImage extends Model
         'order',
         'woman_id',
     ];
+
+    /**
+     * @param string $uri
+     * @return string
+     */
+    public function getUriAttribute(string $uri): string
+    {
+        return Storage::url($uri);
+    }
 }

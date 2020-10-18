@@ -58,6 +58,8 @@ final class ImageHelper
         string $disk = 'public'
     ): bool
     {
-        return Storage::disk($disk)->delete($path);
+        $fixedPath = Str::of($path)->replaceFirst('/storage/', '/');
+
+        return Storage::disk($disk)->delete($fixedPath);
     }
 }

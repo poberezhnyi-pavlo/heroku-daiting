@@ -23,6 +23,10 @@ Route::group(
         'prefix' => 'stuff',
         'name' => 'stuff',
         'namespace' => 'Stuff',
+//        'middleware' => [ //TODO: resolve middleware
+//            'auth',
+//            'can:admin-panel',
+//        ],
     ],
     static function () {
         Route::middleware('optimizeImages')->group(static function () {
@@ -30,4 +34,18 @@ Route::group(
             Route::post('uploadImage', 'ImageController@uploadImage');
         });
         Route::post('deleteImage', 'ImageController@deleteImage');
-    });
+    }
+);
+
+Route::group([
+        'prefix' => 'admin',
+//        'middleware' => [
+//            'auth',
+//            'can:admin-panel',
+//        ],
+    ],
+    static function () {
+        Route::put('changeImageOrder', 'Admin\GalleryImageController@changeOrder');
+        Route::delete('removeImage/{id}', 'Admin\GalleryImageController@removeImage');
+    }
+);
