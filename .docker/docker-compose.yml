@@ -2,7 +2,7 @@ version: '3'
 services:
   php:
     build:
-      context: php
+      context: config/php
     volumes:
       - ../:/var/www
     environment:
@@ -17,7 +17,7 @@ services:
       - internal
   nginx:
     build:
-      context: nginx
+      context: config/nginx
     volumes:
       - ../:/var/www
     ports:
@@ -36,7 +36,7 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: example
     volumes:
-      - ./mysql:/var/lib/mysql
+      - ./data/mysql:/var/lib/mysql
     ports:
       - 3306:3306
     networks:

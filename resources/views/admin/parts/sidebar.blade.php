@@ -67,6 +67,20 @@
                         <p>Settings</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('logout')}}" class="nav-link"
+                       onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();"
+                    >
+                        <i class="fas fa-sign-out-alt"></i>
+                        <p>Logout</p>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

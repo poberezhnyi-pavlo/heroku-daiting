@@ -29,10 +29,7 @@ Route::group(
 //        ],
     ],
     static function () {
-        Route::middleware('optimizeImages')->group(static function () {
-            // all images will be optimized automatically
-            Route::post('uploadImage', 'ImageController@uploadImage');
-        });
+        Route::post('uploadImage', 'ImageController@uploadImage');
         Route::post('deleteImage', 'ImageController@deleteImage');
     }
 );

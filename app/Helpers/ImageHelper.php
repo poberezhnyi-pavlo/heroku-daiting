@@ -39,10 +39,10 @@ final class ImageHelper
         string $watermarkPath
     ): bool
     {
-        $waterMark = Storage::disk('public')->url($watermarkPath);
-        $fullImgPath = Storage::disk('public')->url($imgPath);
-        $image = Picture::make($fullImgPath);
+        $waterMark = Storage::disk('public')->path($watermarkPath);
+        $fullImgPath = Storage::disk('public')->path($imgPath);
 
+        $image = Picture::make($fullImgPath);
         $image->insert($waterMark, 'bottom-right', 5, 5);
 
         return Storage::disk('public')->put( $imgPath, $image->stream());
