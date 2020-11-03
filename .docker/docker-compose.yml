@@ -3,6 +3,9 @@ services:
   php:
     build:
       context: config/php
+      args:
+        PUID: $PUID
+        PGID: $PGID
     volumes:
       - ../:/var/www
     environment:
@@ -18,6 +21,9 @@ services:
   nginx:
     build:
       context: config/nginx
+      args:
+        PUID: $PUID
+        PGID: $PGID
     volumes:
       - ../:/var/www
     ports:

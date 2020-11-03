@@ -30,7 +30,7 @@ Route::group(
     ],
     static function () {
         Route::post('uploadImage', 'ImageController@uploadImage');
-        Route::post('deleteImage', 'ImageController@deleteImage');
+        Route::delete('deleteImage', 'ImageController@deleteImage');
     }
 );
 

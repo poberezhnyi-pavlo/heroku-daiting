@@ -143,34 +143,26 @@ jQuery(document).ready(function() {
             ]
         });
 
-        editor.onChange = function (contents, core) {
+        editor.onChange = function (contents) {
             item.innerHTML = contents;
         }
 
-        // Called when the image is uploaded, updated, deleted.
-        /**
-         * targetElement: Target element
-         * index: Uploaded index (key value)
-         * state: Upload status ('create', 'update', 'delete')
-         * info: {
-         * - index: data index
-         * - name: file name
-         * - size: file size
-         * - select: select function
-         * - delete: delete function
-         * - element: Target element
-         * - src: src attribute of tag
-         * }
-         * remainingFilesCount: Count of remaining files to upload (0 when added as a url)
-         * core: Core object
-         */
-        editor.onImageUpload = function (targetElement, index, state, info, remainingFilesCount, core) {
-            //TODO: Implement image delete
+        let imageList = editor.getImagesInfo();
+        let fullImageList = [...imageList] //fucking JS array cloning trick;
 
-            // if (state==='delete') {
-            console.log(editor.getImagesInfo())
-            // return axios.post('/api/stuff/deleteImage');
-            // }
+        editor.onImageUpload = (targetElement, index, state, info) => {
+            if (state === 'create') {
+                imageList.push(info);
+            } else if (state === 'delete') {
+                let images = _.remove(fullImageList, element => {
+                    return element.index === index;
+                });
+                return axios.delete(`/api/stuff/deleteImage/`, {
+                    params: {
+                        image: images[0].name,
+                    }
+                });
+            }
         }
     });
 });

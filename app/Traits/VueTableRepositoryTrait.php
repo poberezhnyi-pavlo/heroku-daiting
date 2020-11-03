@@ -19,6 +19,14 @@ trait VueTableRepositoryTrait
      */
     public function get(array $request, array $fields=[]): array
     {
+        /**
+         * @var $query
+         * @var $byColumn
+         * @var $limit
+         * @var $page
+         * @var $orderBy
+         * @var $ascending
+         */
         extract($request,EXTR_OVERWRITE);
 
         $data = $this->model->whereNotIn('role', ['superAdmin'])->select();

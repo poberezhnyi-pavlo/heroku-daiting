@@ -1,5 +1,11 @@
 FROM php:7.4-fpm
 
+ENV user dev
+ARG PUID=1000
+ARG PGID=1000
+RUN groupadd -g $PGID $user && \
+    useradd -u $PUID -g $user -m $user
+
 # mysql
 RUN docker-php-ext-install pdo pdo_mysql mysqli
 
@@ -66,9 +72,6 @@ RUN node -v
 RUN npm -v
 RUN python --version
 
-RUN chown -R www-data:www-data /var/www/html
-
 WORKDIR /var/www
 
-USER 1000:1000
-
+CMD ["php-fpm"]

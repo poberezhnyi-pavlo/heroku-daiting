@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Requests\ImageOrderRequest;
+use App\Http\Requests\Image\ImageOrderRequest;
 use App\Services\Admin\GalleryImageService;
 use Illuminate\Support\Collection;
 

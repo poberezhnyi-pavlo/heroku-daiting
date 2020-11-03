@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Stuff;
 
+use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ImageRequest;
+use App\Http\Requests\Image\ImageRequest;
+use App\Http\Requests\Image\RemoveImageRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
@@ -14,6 +16,25 @@ use Illuminate\Support\Str;
  */
 class ImageController extends Controller
 {
+    /**
+     * @var ImageHelper
+     */
+    private ImageHelper $imageHelper;
+
+    /**
+     * @var string
+     */
+    private const PATH = 'images/';
+
+    /**
+     * ImageController constructor.
+     * @param ImageHelper $imageHelper
+     */
+    public function __construct(ImageHelper $imageHelper)
+    {
+        $this->imageHelper = $imageHelper;
+    }
+
     /**
      * @param ImageRequest $request
      * @return JsonResponse
@@ -41,14 +62,16 @@ class ImageController extends Controller
                 ]
             ]
         ]);
-
     }
 
     /**
-     * @param UploadedFile $image
+     * @param RemoveImageRequest $request
+     * @return bool
      */
-    public function deleteImage(UploadedFile $image): UploadedFile
+    public function deleteImage(RemoveImageRequest $request): bool
     {
-
+//        dd($request->image);
+        return $this
+            ->imageHelper::removeImage(self::PATH.$request->image);
     }
 }

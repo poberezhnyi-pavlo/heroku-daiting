@@ -119,6 +119,9 @@ class Woman extends Model
         'is_show_in_gallery',
     ];
 
+    /**
+     * @var string[]
+     */
     protected $casts = [
         'birth_date' => 'date',
     ];
