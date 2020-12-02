@@ -11,7 +11,7 @@
                         id="inputCountry"
                         class="select2"
                         data-placeholder="Select country"
-                        name="country"
+                        name="man[country]"
                         style="width: 100%;"
                         data-dropdown-css-class="select2-purple"
                     >
@@ -34,10 +34,27 @@
                 </div>
                 <input
                     type="text"
-                    name="city"
+                    name="man[city]"
                     class="form-control"
                     id="inputCity"
                     placeholder="Enter city"
+                >
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                </div>
+                <input
+                    type="text"
+                    name="man[address]"
+                    class="form-control"
+                    id="inputAddress"
+                    placeholder="Enter address"
                 >
             </div>
         </div>
@@ -54,7 +71,7 @@
                     min="0"
                     value="0"
                     step="1"
-                    name="post_index"
+                    name="man[post_index]"
                     class="form-control"
                     id="inputPostIndex"
                 >
@@ -75,7 +92,7 @@
                         data-target="#datePicker"
                         data-toggle="datetimepicker"
                         id="inputBirthDay"
-                        name="birth_day"
+                        name="man[birth_day]"
                     />
                 </div>
             </div>
@@ -93,7 +110,7 @@
                     min="0"
                     value="0"
                     step="1"
-                    name="height"
+                    name="man[height]"
                     class="form-control"
                     id="inputHeight"
                 >
@@ -112,7 +129,7 @@
                     min="0"
                     value="0"
                     step="1"
-                    name="weight"
+                    name="man[weight]"
                     class="form-control"
                     id="inputWeight"
                 >
@@ -126,7 +143,11 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="far fa-eye"></i></span>
                 </div>
-                <select id="inputEveColor" class="custom-select" name="eye_color">
+                <select
+                    id="inputEveColor"
+                    class="custom-select"
+                    name="man[eye_color]"
+                >
                     @foreach($eyeColors as $eyeColor)
                         <option value="{{ $eyeColor }}">
                             {{ $eyeColor }}
@@ -143,7 +164,11 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-user-alt"></i></span>
                 </div>
-                <select id="inputHairColor" class="custom-select" name="hair_color">
+                <select
+                    id="inputHairColor"
+                    class="custom-select"
+                    name="man[hair_color]"
+                >
                     @foreach($hairColors as $hairColor)
                         <option value="{{ $hairColor }}">
                             {{ $hairColor }}
@@ -162,7 +187,7 @@
                 </div>
                 <textarea
                     type="text"
-                    name="about_myself"
+                    name="man[about_myself]"
                     class="form-control"
                     id="inputAboutMyself"
                     placeholder="Describe about myself"
@@ -179,7 +204,7 @@
                 </div>
                 <textarea
                     type="text"
-                    name="interests"
+                    name="man[interests]"
                     class="form-control"
                     id="inputInterests"
                     placeholder="Describe interests"
@@ -196,7 +221,7 @@
                 </div>
                 <input
                     type="text"
-                    name="education"
+                    name="man[education]"
                     class="form-control"
                     id="inputEducation"
                     placeholder="Enter education"
@@ -213,7 +238,7 @@
                 </div>
                 <input
                     type="text"
-                    name="job"
+                    name="man[job]"
                     class="form-control"
                     id="inputJob"
                     placeholder="Enter current job"
@@ -230,10 +255,28 @@
                 </div>
                 <input
                     type="text"
-                    name="creed"
+                    name="man[creed]"
                     class="form-control"
                     id="inputCreed"
                     placeholder="Enter your creed"
+                >
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputBadHabits" class="col-sm-2 col-form-label">Bad habits</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-smoking"></i></span>
+                </div>
+                <input
+                    type="text"
+                    name="man[bad_habits]"
+                    class="form-control"
+                    id="inputBadHabits"
+                    placeholder="Enter your bad habits"
+                    value=""
                 >
             </div>
         </div>
@@ -251,11 +294,16 @@
                         class="select2"
                         multiple="multiple"
                         data-placeholder="Select languages"
-                        name="langs"
+                        name="man[langs][]"
                         style="width: 100%;"
                     >
                         @foreach($langs as $lang)
-                            <option value="{{ $lang->key }}">
+                            <option
+                                value="{{ $lang->key }}"
+                                @if (old('man.langs') === $lang->key)
+                                selected="selected"
+                                @endif
+                            >
                                 {{$lang->key}} - {{ $lang->value }}
                             </option>
                         @endforeach
@@ -265,21 +313,38 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="inputChildrenAmount" class="col-sm-2 col-form-label">Amount of children</label>
+        <label for="ageOfWoman" class="col-sm-2 col-form-label">Desired age of the woman</label>
         <div class="col-sm-10">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-baby-carriage"></i></span>
+                    <span class="input-group-text"><i class="fas fa-hourglass-start"></i></span>
                 </div>
                 <input
                     type="number"
-                    min="0"
-                    value="0"
+                    min="18"
+                    value="18"
                     step="1"
-                    name="amount_of_children"
+                    name="man[age_of_woman]"
                     class="form-control"
-                    id="inputChildrenAmount"
-                    placeholder="Amount of children"
+                    id="ageOfWoman"
+                    placeholder="Desired age of the woman"
+                >
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputAboutWoman" class="col-sm-2 col-form-label">Type of woman</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-balance-scale"></i></span>
+                </div>
+                <input
+                    type="text"
+                    name="man[about_woman]"
+                    class="form-control"
+                    id="inputAboutWoman"
+                    placeholder="Describe a woman"
                 >
             </div>
         </div>

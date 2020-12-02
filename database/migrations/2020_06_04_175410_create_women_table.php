@@ -14,7 +14,7 @@ class CreateWomenTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('women', static function (Blueprint $table) {
+        Schema::create(Woman::tableName(), static function (Blueprint $table) {
             $table->id();
             $table->date('birth_date')->nullable();
             $table->integer('amount_of_children', false, true);
@@ -45,6 +45,6 @@ class CreateWomenTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('women');
+        Schema::dropIfExists(Woman::tableName());
     }
 }

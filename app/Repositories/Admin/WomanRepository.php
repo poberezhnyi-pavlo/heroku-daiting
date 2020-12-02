@@ -14,7 +14,8 @@ use App\Helpers\ImageHelper;
  */
 class WomanRepository extends BaseRepository
 {
-    protected $videoRepository;
+    /** @var VideoRepository $videoRepository */
+    protected VideoRepository $videoRepository;
 
     /**
      * WomanRepository constructor.
@@ -36,6 +37,7 @@ class WomanRepository extends BaseRepository
      */
     public function storeWoman(array $data): Model
     {
+        /** @var Woman $woman */
         $woman = $this->store($data);
 
         if (Arr::exists($data, 'video')) {

@@ -165,8 +165,73 @@ class UserStoreRequest extends FormRequest
      */
     private function getManRules(): array
     {
-        //TODO: create Man rules after clear form requirements.
-
-        return [];
+        return [
+            'man.country' => [
+                'string',
+                'nullable',
+            ],
+            'man.city' => [
+                'string',
+                'nullable',
+            ],
+            'man.address' => [
+                'string',
+                'nullable',
+            ],
+            'man.post_index' => [
+                'numeric',
+                'nullable',
+            ],
+            'man.birth_date' => [
+                'date',
+                'nullable',
+            ],
+            'man.height' => [
+                'numeric',
+            ],
+            'man.weight' => [
+                'numeric',
+            ],
+            'man.eye_color' => [
+                Rule::in(Woman::EYE_COLORS),
+            ],
+            'man.hair_color' => [
+                Rule::in(Woman::HAIR_COLORS),
+            ],
+            'man.about_myself' => [
+                'string',
+                'nullable',
+            ],
+            'man.interests' => [
+                'string',
+                'nullable',
+            ],
+            'man.education' => [
+                'string',
+                'nullable',
+            ],
+            'man.job' => [
+                'string',
+                'nullable',
+            ],
+            'man.creed' => [
+                'string',
+                'nullable',
+            ],
+            'man.bad_habits' => [
+                'string',
+                'nullable',
+            ],
+            'man.langs' => [
+                'array',
+            ],
+            'man.age_of_woman' => [
+                'numeric',
+            ],
+            'man.about_woman' => [
+                'string',
+                'nullable',
+            ],
+        ];
     }
 }

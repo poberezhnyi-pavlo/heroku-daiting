@@ -19,4 +19,13 @@ class ManRepository extends BaseRepository
     {
         $this->model = $man;
     }
+
+    /**
+     * @param array $manData
+     * @return Man
+     */
+    public function storeMan(array $manData): Man
+    {
+        return $this->store($manData);
+    }
 }

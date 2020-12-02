@@ -2,7 +2,9 @@
 
 namespace App\Services\Admin;
 
+use App\Models\Man;
 use App\Models\User;
+use App\Models\Woman;
 use App\Repositories\Admin\ManRepository;
 use App\Repositories\Admin\UserRepository;
 use App\Repositories\Admin\WomanRepository;
@@ -20,12 +22,12 @@ class UserService extends BaseService
     /**
      * @var WomanRepository
      */
-    protected $womanRepository;
+    protected WomanRepository $womanRepository;
 
     /**
      * @var ManRepository
      */
-    protected $manRepository;
+    protected ManRepository $manRepository;
 
     /**
      * UserService constructor.
@@ -63,11 +65,19 @@ class UserService extends BaseService
             $data['user']['password'] = Hash::make(Str::random(10));
         }
 
+        /** @var User $user */
         $user =  $this->repository->storeUser($data['user']);
 
         if (array_key_exists('woman', $data)) {
+            /** @var Woman $woman */
             $woman = $this->womanRepository->storeWoman($data['woman']);
             $user->user()->associate($woman)->save();
+        }
+
+        if (array_key_exists('man', $data)) {
+            /** @var Man $man */
+            $man = $this->manRepository->storeMan($data['man']);
+            $user->user()->associate($man)->save();
         }
 
         return $user;
