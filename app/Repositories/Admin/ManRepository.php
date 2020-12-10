@@ -21,11 +21,12 @@ class ManRepository extends BaseRepository
     }
 
     /**
-     * @param array $manData
-     * @return Man
+     * @param array $data
+     * @param Man $man
+     * @return bool
      */
-    public function storeMan(array $manData): Man
+    public function updateMan(array $data, Man $man): bool
     {
-        return $this->store($manData);
+        return $man->update($data);
     }
 }

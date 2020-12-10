@@ -90,21 +90,15 @@ abstract class BaseRepository
     /**
      * @param array $data
      * @param array $where
-     * @param bool $trashed
      * @return bool
      */
     public function updateModelWhere(
         array $data,
-        array $where,
-        bool $trashed = true
+        array $where
     ): bool {
-        $query = $this->model;
-
-        if ($trashed) {
-            $query->withTrashed();
-        }
-
-        return $query->where($where)
+        return $this->model
+            ->withTrashed()
+            ->where($where)
             ->update($data);
     }
 
@@ -120,15 +114,14 @@ abstract class BaseRepository
 
     /**
      * @param array $collection
-     * @param bool $trashed
      * @return Collection
      */
-    public function massUpdate(array $collection, $trashed = false): Collection
+    public function massUpdate(array $collection): Collection
     {
-        return collect($collection)->each(function ($item) use ($trashed){
+        return collect($collection)->each(function ($item) {
             return $this->updateModelWhere($item, [
                 'id' =>$item['id'],
-            ], $trashed);
+            ]);
         });
     }
 

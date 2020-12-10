@@ -402,17 +402,6 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Gallery images</label>
         <div class="col-sm-10">
-{{--            <div class="sortable-list thumbnail-wrap" id="dynamicOrderImages">--}}
-{{--                @foreach($user->user->images as $image)--}}
-{{--                    <div class="sortable-item">--}}
-{{--                        <img--}}
-{{--                            src="{{asset($image->uri)}}"--}}
-{{--                            alt="image"--}}
-{{--                            class="img-thumbnail sortable-button"--}}
-{{--                        >--}}
-{{--                    </div>--}}
-{{--                @endforeach--}}
-{{--            </div>--}}
             <div class="thumbnail-wrap">
                 <draggable-images
                     :images="{{$user->user->images}}"

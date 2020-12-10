@@ -76,7 +76,7 @@ class UserService extends BaseService
 
         if (array_key_exists('man', $data)) {
             /** @var Man $man */
-            $man = $this->manRepository->storeMan($data['man']);
+            $man = $this->manRepository->store($data['man']);
             $user->user()->associate($man)->save();
         }
 
@@ -100,6 +100,10 @@ class UserService extends BaseService
 
         if (array_key_exists('woman', $data)) {
             $this->womanRepository->updateWoman($data['woman'], $user->user);
+        }
+
+        if (array_key_exists('man', $data)) {
+            $this->manRepository->updateMan($data['man'], $user->user);
         }
 
         return $updatedUser;

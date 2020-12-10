@@ -11,12 +11,17 @@
                         id="inputCountry"
                         class="select2"
                         data-placeholder="Select country"
-                        name="country"
+                        name="man[country]"
                         style="width: 100%;"
                         data-dropdown-css-class="select2-purple"
                     >
                         @foreach($countries as $country)
-                            <option value="{{ $country->key }}">
+                            <option
+                                value="{{ $country->key }}"
+                                @if ($user->user->country === $country->key)
+                                    selected="selected"
+                                @endif
+                            >
                                 {{$country->key}} - {{ $country->value }}
                             </option>
                         @endforeach
@@ -34,10 +39,29 @@
                 </div>
                 <input
                     type="text"
-                    name="city"
+                    name="man[city]"
                     class="form-control"
                     id="inputCity"
                     placeholder="Enter city"
+                    value="{{$user->user->city}}"
+                >
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                </div>
+                <input
+                    type="text"
+                    name="man[address]"
+                    class="form-control"
+                    id="inputAddress"
+                    placeholder="Enter address"
+                    value="{{$user->user->address}}"
                 >
             </div>
         </div>
@@ -52,9 +76,9 @@
                 <input
                     type="number"
                     min="0"
-                    value="0"
+                    value="{{$user->user->post_index}}"
                     step="1"
-                    name="post_index"
+                    name="man[post_index]"
                     class="form-control"
                     id="inputPostIndex"
                 >
@@ -75,7 +99,8 @@
                         data-target="#datePicker"
                         data-toggle="datetimepicker"
                         id="inputBirthDay"
-                        name="birth_day"
+                        name="man[birth_day]"
+                        value="{{$user->user->birth_day}}"
                     />
                 </div>
             </div>
@@ -91,9 +116,9 @@
                 <input
                     type="number"
                     min="0"
-                    value="0"
+                    value="{{$user->user->height}}"
                     step="1"
-                    name="height"
+                    name="man[height]"
                     class="form-control"
                     id="inputHeight"
                 >
@@ -110,9 +135,9 @@
                 <input
                     type="number"
                     min="0"
-                    value="0"
+                    value="{{$user->user->weight}}"
                     step="1"
-                    name="weight"
+                    name="man[weight]"
                     class="form-control"
                     id="inputWeight"
                 >
@@ -126,9 +151,18 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="far fa-eye"></i></span>
                 </div>
-                <select id="inputEveColor" class="custom-select" name="eye_color">
+                <select
+                    id="inputEveColor"
+                    class="custom-select"
+                    name="man[eye_color]"
+                >
                     @foreach($eyeColors as $eyeColor)
-                        <option value="{{ $eyeColor }}">
+                        <option
+                            value="{{ $eyeColor }}"
+                            @if ($user->user->eye_color === $eyeColor)
+                                selected="selected"
+                            @endif
+                        >
                             {{ $eyeColor }}
                         </option>
                     @endforeach
@@ -143,9 +177,18 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-user-alt"></i></span>
                 </div>
-                <select id="inputHairColor" class="custom-select" name="hair_color">
+                <select
+                    id="inputHairColor"
+                    class="custom-select"
+                    name="man[hair_color]"
+                >
                     @foreach($hairColors as $hairColor)
-                        <option value="{{ $hairColor }}">
+                        <option
+                            value="{{ $hairColor }}"
+                            @if ($user->user->hair_color === $hairColor)
+                                selected="selected"
+                            @endif
+                        >
                             {{ $hairColor }}
                         </option>
                     @endforeach
@@ -162,11 +205,11 @@
                 </div>
                 <textarea
                     type="text"
-                    name="about_myself"
+                    name="man[about_myself]"
                     class="form-control"
                     id="inputAboutMyself"
                     placeholder="Describe about myself"
-                ></textarea>
+                >{{$user->user->about_myself}}</textarea>
             </div>
         </div>
     </div>
@@ -179,11 +222,11 @@
                 </div>
                 <textarea
                     type="text"
-                    name="interests"
+                    name="man[interests]"
                     class="form-control"
                     id="inputInterests"
                     placeholder="Describe interests"
-                ></textarea>
+                >{{$user->user->interests}}</textarea>
             </div>
         </div>
     </div>
@@ -196,10 +239,11 @@
                 </div>
                 <input
                     type="text"
-                    name="education"
+                    name="man[education]"
                     class="form-control"
                     id="inputEducation"
                     placeholder="Enter education"
+                    value="{{$user->user->education}}"
                 >
             </div>
         </div>
@@ -213,10 +257,11 @@
                 </div>
                 <input
                     type="text"
-                    name="job"
+                    name="man[job]"
                     class="form-control"
                     id="inputJob"
                     placeholder="Enter current job"
+                    value="{{$user->user->job}}"
                 >
             </div>
         </div>
@@ -230,10 +275,29 @@
                 </div>
                 <input
                     type="text"
-                    name="creed"
+                    name="man[creed]"
                     class="form-control"
                     id="inputCreed"
                     placeholder="Enter your creed"
+                    value="{{$user->user->creed}}"
+                >
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputBadHabits" class="col-sm-2 col-form-label">Bad habits</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-smoking"></i></span>
+                </div>
+                <input
+                    type="text"
+                    name="man[bad_habits]"
+                    class="form-control"
+                    id="inputBadHabits"
+                    placeholder="Enter your bad habits"
+                    value="{{$user->user->bad_habits}}"
                 >
             </div>
         </div>
@@ -251,35 +315,64 @@
                         class="select2"
                         multiple="multiple"
                         data-placeholder="Select languages"
-                        name="langs"
+                        name="man[langs][]"
                         style="width: 100%;"
                     >
-                        @foreach($langs as $lang)
-                            <option value="{{ $lang->key }}">
-                                {{$lang->key}} - {{ $lang->value }}
-                            </option>
-                        @endforeach
+                        @isset($langs)
+                            @foreach($langs as $lang)
+                                <option
+                                    value="{{ $lang->key }}"
+                                    @isset($user->user->langs)
+                                        @foreach($user->user->langs as $userLang)
+                                            @if ($userLang === $lang->key)
+                                                selected="selected"
+                                            @endif
+                                        @endforeach
+                                    @endisset
+                                >
+                                    {{$lang->key}} - {{ $lang->value }}
+                                </option>
+                            @endforeach
+                        @endisset
                     </select>
                 </div>
             </div>
         </div>
     </div>
     <div class="form-group row">
-        <label for="inputChildrenAmount" class="col-sm-2 col-form-label">Amount of children</label>
+        <label for="ageOfWoman" class="col-sm-2 col-form-label">Desired age of the woman</label>
         <div class="col-sm-10">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-baby-carriage"></i></span>
+                    <span class="input-group-text"><i class="fas fa-hourglass-start"></i></span>
                 </div>
                 <input
                     type="number"
-                    min="0"
-                    value="0"
+                    min="18"
+                    value="{{$user->user->age_of_woman}}"
                     step="1"
-                    name="amount_of_children"
+                    name="man[age_of_woman]"
                     class="form-control"
-                    id="inputChildrenAmount"
-                    placeholder="Amount of children"
+                    id="ageOfWoman"
+                    placeholder="Desired age of the woman"
+                >
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputAboutWoman" class="col-sm-2 col-form-label">Type of woman</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-balance-scale"></i></span>
+                </div>
+                <input
+                    type="text"
+                    name="man[about_woman]"
+                    class="form-control"
+                    id="inputAboutWoman"
+                    placeholder="Describe a woman"
+                    value="{{$user->user->about_woman}}"
                 >
             </div>
         </div>

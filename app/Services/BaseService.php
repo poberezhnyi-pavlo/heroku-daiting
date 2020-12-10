@@ -43,9 +43,12 @@ abstract class BaseService
     public function updateWhere(array $data, int $id): bool
     {
         return $this->repository
-            ->updateModelWhere($data, [
+            ->updateModelWhere(
+                $data,
+                [
                     'id' => $id,
-                ]
+                ],
+                true
             );
     }
 
