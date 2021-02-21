@@ -9,9 +9,9 @@ services:
     volumes:
       - ../:/var/www
     environment:
-      XDEBUG_CONFIG: "remote_host=192.168.220.1 remote_enable=1"
-#      XDEBUG_CONFIG: "remote_host=host.docker.internal remote_enable=1" #for Windows/Mac
-      PHP_IDE_CONFIG: "serverName=Docker"
+#      XDEBUG_CONFIG: "client_host=host.docker.internal" #for Windows/Mac
+      XDEBUG_CONFIG: "client_host=192.168.227.1"
+      PHP_IDE_CONFIG: serverName=Docker
     depends_on:
       - mysql
     links:
@@ -60,4 +60,4 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 192.168.220.0/28
+        - subnet: 192.168.227.0/28

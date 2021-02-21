@@ -22,9 +22,11 @@ RUN apt-get update && apt-get install -y wget git unzip \
     zlib1g-dev \
     libicu-dev \
     libmemcached-dev \
-    memcached \
-    && pecl install xdebug-2.8.1 \
-    && docker-php-ext-enable xdebug
+    memcached
+
+# x-debug
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
 
 # memcached
 RUN pecl install memcached-3.1.5
