@@ -1,61 +1,61 @@
 <template>
-    <div class="form-horizontal">
-        <div class="card-body">
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">
-                    {{initialData[0].name}}
-                </label>
-                <div class="col-sm-4">
+    <div>
+        <div class="card card-info" v-for="(block, name, index) in initialData" :key="index">
+            <div class="card-header">
+                <h3 class="card-title">
+                    {{name}}
+                </h3>
+            </div>
 
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                  <i class="fas fa-dollar-sign"></i>
-                                </span>
-                        </div>
-                        <input
-                            name="id"
-                            type="hidden"
-                            :value="initialData[0].id"
-                        >
-                        <input
-                            type="number"
-                            class="form-control"
-                            :id="initialData[0].id"
-                            :name="initialData[0].key"
-                            placeholder="Enter a number value..."
-                            step="0.1"
-                            min="0"
-                            v-model:value="formData[0].value"
-                        >
-                    </div>
+            <div class="form-horizontal">
+                <component
+                    v-for="(field, fieldIndex) in block"
+                    :key="fieldIndex"
+                    :is="field.fieldType"
+                    :fieldData="field"
+                    @valueChanged="setFieldData"
+                >
+                </component>
 
-                </div>
-                <div class="col-sm-6 form-text text-muted">
-                    {{formData[0].description}}
-                </div>
             </div>
         </div>
-        <!-- /.card-body -->
         <div class="card-footer">
-            <button type="submit" class="offset-lg-2 offset-md-2 btn btn-success" @click="saveData()">Save</button>
+            <button
+                type="submit"
+                class="btn btn-success btn-lg"
+                @click="saveData()"
+            >
+                Save
+            </button>
         </div>
         <!-- /.card-footer -->
     </div>
 </template>
 
 <script>
+    import inputField from './fields/InputField'
+
     export default {
         name: "SettingsFormComponent",
+        components: {
+            inputField,
+        },
         data: function() {
             return {
-                formData: {...this.initialData},
+                formData: {},
             }
         },
         props: [
             'initialData',
         ],
         methods: {
+            setFieldData(key, id, value) {
+                this.formData[key] = {
+                    id,
+                    key,
+                    value: parseFloat(value),
+                }
+            },
             saveData() {
                 return axios.post('/admin/settings/update', this.formData)
                     .then((response) => {

@@ -27,7 +27,7 @@ class SettingService extends BaseService
      */
     public function getSettings(): Collection
     {
-        return $this->repository->getAll();
+        return $this->repository->getAllGrouped('category');
     }
 
     /**

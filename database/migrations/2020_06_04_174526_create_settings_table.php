@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Setting;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,6 +21,10 @@ class CreateSettingsTable extends Migration
             $table->longText('value');
             $table->string('append', 20);
             $table->longText('description');
+            $table->enum('category', Setting::CATEGORIES)
+                ->default(Setting::CATEGORY_MAIN);
+            $table->enum('fieldType', Setting::FIELDS)
+                ->default(Setting::FIELD_INPUT);
         });
     }
 

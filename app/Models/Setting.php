@@ -12,9 +12,27 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $value
  * @property string $append
  * @property string $description
+ * @property string $category
+ * @property string $fieldType
  */
 class Setting extends Model
 {
+    public const CATEGORY_MAIN = 'Main';
+    public const CATEGORY_PRICE = 'Price Settings';
+
+    public const CATEGORIES = [
+        self::CATEGORY_MAIN,
+        self::CATEGORY_PRICE,
+    ];
+
+    public const FIELD_INPUT = 'inputField';
+    public const FIELD_TEXTAREA = 'textareaField';
+
+    public const FIELDS = [
+        self::FIELD_INPUT,
+        self::FIELD_TEXTAREA,
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,6 +44,8 @@ class Setting extends Model
         'value',
         'append',
         'description',
+        'category',
+        'fieldType',
     ];
 
     /**

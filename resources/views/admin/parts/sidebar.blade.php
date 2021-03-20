@@ -38,6 +38,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('admin.homepage.index')}}" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <p>Homepage</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{route('pages.index')}}" class="nav-link">
                         <i class="far fa-copy"></i>
                         <p>Pages</p>
@@ -72,7 +78,7 @@
                        onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();"
                     >
-                        <i class="fas fa-sign-out-alt"></i>
+                        <i class="fas fa-sign-out-alt text-danger"></i>
                         <p>Logout</p>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

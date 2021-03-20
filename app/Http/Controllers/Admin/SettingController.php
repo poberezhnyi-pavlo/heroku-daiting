@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\Setting\UpdateSettingsRequest;
 use App\Services\Admin\SettingService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -41,10 +42,10 @@ class SettingController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param UpdateSettingsRequest $request
      * @return Collection
      */
-    public function update(Request $request): Collection
+    public function update(UpdateSettingsRequest $request): Collection
     {
         return $this->service
             ->updateSettings($request->all());

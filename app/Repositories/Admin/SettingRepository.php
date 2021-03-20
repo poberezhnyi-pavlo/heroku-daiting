@@ -19,4 +19,13 @@ class SettingRepository extends BaseRepository
     {
         $this->model = $setting;
     }
+
+    /**
+     * @param string $by
+     * @return mixed
+     */
+    public function getAllGrouped(string $by)
+    {
+        return $this->model::get()->groupBy($by);
+    }
 }
