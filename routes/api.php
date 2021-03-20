@@ -44,5 +44,8 @@ Route::group([
     static function () {
         Route::put('changeImageOrder', 'Admin\GalleryImageController@changeOrder');
         Route::delete('removeImage/{id}', 'Admin\GalleryImageController@removeImage');
+        //Slides
+        Route::put('slides/changeOrder', 'Admin\SlidesController@changeOrder');
+        Route::resource('slides', 'Admin\SlidesController');
     }
 );
