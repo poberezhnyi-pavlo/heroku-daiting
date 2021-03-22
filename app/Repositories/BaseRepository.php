@@ -28,7 +28,7 @@ abstract class BaseRepository
      */
     public function remove(int $id): ?bool
     {
-        return $this->model->destroy($id);
+        return $this->model::destroy($id);
     }
 
     /**
@@ -54,7 +54,7 @@ abstract class BaseRepository
      */
     public function forceDestroyByModel(Model $model): ?bool
     {
-        if(!$model->trashed()){
+        if(!method_exists($model, 'trashed')){
             return $model->delete();
         }
 
@@ -96,10 +96,16 @@ abstract class BaseRepository
         array $data,
         array $where
     ): bool {
-        return $this->model
-            ->withTrashed()
-            ->where($where)
+        $model =  $this->model;
+
+        if(method_exists($this, 'withTrashed')){
+            $model->withTrashed();
+        }
+
+            $model->where($where)
             ->update($data);
+
+        return (bool) $model;
     }
 
     /**

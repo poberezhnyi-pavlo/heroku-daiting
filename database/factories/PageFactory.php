@@ -8,6 +8,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 $factory->define(Page::class, static function () {
     $langs = [];
+
     foreach (LaravelLocalization::getSupportedLocales() as $key=>$locale) {
         $faker = \Faker\Factory::create($locale['regional']);
         $langs[$key] = [

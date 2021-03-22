@@ -14,6 +14,12 @@ import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 Vue.use(ServerTable);
 Vue.use(VueToast);
+
+// VueSweetalert2
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+Vue.use(VueSweetalert2);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -30,12 +36,17 @@ Vue.component('users-component', require('./components/admin/UsersComponent.vue'
 Vue.component('spinner-component', require('./components/admin/SpinnerComponent.vue').default);
 Vue.component('settings-form-component', require('./components/admin/SettingsFormComponent').default);
 Vue.component('draggable-images', require('./components/admin/DraggableImages').default);
+Vue.component('homepage-slides', require('./components/admin/homepageSlide/HomepageSlides').default);
+Vue.component('homepage-slide-form', require('./components/admin/homepageSlide/HomepageSlideNewForm').default);
+Vue.component('delete-slide-button', require('./components/admin/homepageSlide/Buttons/DeleteSlideButton').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+Vue.prototype.$locales = window.locales; //Add existed locales
 
 const app = new Vue({
     el: '#app',

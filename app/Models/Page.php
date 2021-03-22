@@ -10,8 +10,6 @@ use Astrotomic\Translatable\Translatable;
 /**
  * Class Page
  * @package App\Models
- * @property string title
- * @property string body
  * @property bool published
  * @property string slug
  * @property Carbon created_at
@@ -24,7 +22,7 @@ class Page extends Model implements TranslatableContract
     /**
      * @var string[]
      */
-    public $translatedAttributes = [
+    public array $translatedAttributes = [
         'title',
         'body',
     ];
@@ -41,7 +39,7 @@ class Page extends Model implements TranslatableContract
      * @param string $value
      * @return void
      */
-    public function setPublishedAttribute($value): void
+    public function setPublishedAttribute(string $value): void
     {
         $this->attributes['published'] = $value ? 1 : 0;
     }

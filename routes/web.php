@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', static function () {
-    return view('welcome');
+    return view('site.pages.index');
 });
 
 Auth::routes();
@@ -58,6 +58,12 @@ Route::group(
                 ->name('admin.settings.index');
             Route::post('update', 'SettingController@update')
                 ->name('admin.settings.update');
+        });
+
+        //Homepage
+        Route::group(['prefix' => 'homepage'], static function () {
+            Route::get('/', 'HomepageController@index')
+                ->name('admin.homepage.index');
         });
 
         //Pages

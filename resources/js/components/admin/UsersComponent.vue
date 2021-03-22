@@ -74,7 +74,7 @@
             userType: String,
             currentUser: Object,
         },
-        data: function() {
+        data() {
             return {
                 url: '/admin/users/fetch',
                 columns: [

@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePageTranslationsTable extends Migration
 {
+    /** @var string TABLE */
+    private const TABLE = 'page_translations';
+
     /**
      * Run the migrations.
      *
@@ -13,10 +16,11 @@ class CreatePageTranslationsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('page_translations', static function (Blueprint $table) {
+        Schema::create(self::TABLE, static function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('page_id');
             $table->string('locale')->index();
+
             $table->string('title');
             $table->longText('body');
 
@@ -35,6 +39,6 @@ class CreatePageTranslationsTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('page_translations');
+        Schema::dropIfExists(self::TABLE);
     }
 }
