@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * Class Woman
@@ -33,6 +34,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * Relations
  * @property Collection images
  * @property Collection videos
+ * @property Collection gifts
  */
 final class Woman extends BaseHuman
 {
@@ -102,6 +104,17 @@ final class Woman extends BaseHuman
         return $this
             ->hasMany(Video::class)
             ->orderBy('order');
+    }
+
+    /**
+     * @return HasManyThrough
+     */
+    public function gifts(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            Gift::class,
+            GiftWoman::class
+        );
     }
 
     /**

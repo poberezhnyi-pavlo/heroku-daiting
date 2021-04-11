@@ -19,10 +19,11 @@ abstract class BaseService
     protected $repository;
 
     /**
+     * @param bool $withTrashed
      * @return mixed
      */
-    public function index() {
-        return $this->repository->getAll();
+    public function index(bool $withTrashed = false) {
+        return $this->repository->getAll($withTrashed);
     }
 
     /**

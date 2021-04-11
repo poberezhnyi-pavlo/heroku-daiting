@@ -63,6 +63,6 @@ class WomanObserver
      */
     public function forceDeleted(Woman $woman)
     {
-        dd('forceDeleted Woman');
+
     }
 }

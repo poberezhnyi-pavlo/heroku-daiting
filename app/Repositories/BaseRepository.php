@@ -7,6 +7,8 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 
 /**
  * Class BaseRepository
@@ -102,7 +104,7 @@ abstract class BaseRepository
             $model->withTrashed();
         }
 
-            $model->where($where)
+        $model->where($where)
             ->update($data);
 
         return (bool) $model;
@@ -147,7 +149,8 @@ abstract class BaseRepository
      */
     public function getById(int $id, bool $trashed = false)
     {
-        $q = $this->model->where('id' , $id);
+        $q = $this->model::query()
+            ->where('id' , $id);
 
         if ($trashed) {
             $q->withTrashed();
@@ -157,11 +160,17 @@ abstract class BaseRepository
     }
 
     /**
-     * @return mixed
+     * @param bool $withTrashed
+     * @return Builder[]|EloquentCollection
      */
-    public function getAll()
+    public function getAll(bool $withTrashed = false)
     {
-        return $this->model->get();
+        $q = $this->model::query();
+
+        if ($withTrashed) {
+            $q->withTrashed();
+        }
+        return $q->get();
     }
 
     /**

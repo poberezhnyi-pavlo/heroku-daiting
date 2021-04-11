@@ -68,5 +68,8 @@ Route::group(
 
         //Pages
         Route::resource('pages', 'PageController');
+
+        //Gifts
+        Route::resource('gifts', 'GiftController');
     }
 );

@@ -8,6 +8,10 @@
 
     <title>{{ config('app.name') }} | Admin part | @yield('title')</title>
 
+    <script>
+        window.locales = @json(LaravelLocalization::getSupportedLocales());
+    </script>
+
     <link rel="stylesheet" href="{{mix('/css/libs.css')}}">
     <link rel="stylesheet" href="{{mix('/css/admin.css')}}">
 
