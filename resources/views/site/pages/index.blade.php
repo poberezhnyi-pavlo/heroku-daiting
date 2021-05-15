@@ -7,7 +7,7 @@
 @section('content')
 
     <!-- Swiper-->
-    @include('site.sections.promo-slider')
+    @include('site.sections.promo-slider', ['sliders' => $sliders])
 
     <section class="section section-lg bg-default text-center">
         <div class="container">

@@ -36,7 +36,7 @@ class Slide extends Model implements TranslatableContract
         'order',
     ];
 
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
 

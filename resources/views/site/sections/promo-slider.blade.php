@@ -1,44 +1,44 @@
 <section class="section swiper-container swiper-slider swiper-slider-1" data-loop="false" data-autoplay="5500" data-simulate-touch="false" data-slide-effect="fade">
     <div class="swiper-wrapper">
-        <div class="swiper-slide" data-slide-bg="images/slide-1-1920x720.jpg">
+        @forelse($sliders as $slider)
+            @php /** @var App\Models\Slide $slider **/ @endphp
+        <div
+            class="swiper-slide"
+            data-slide-bg="{{ asset('storage/' . $slider->uri) }}"
+        >
             <div class="swiper-slide-caption section-md">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-10 col-lg-8 col-xl-7">
-                            <h1 class="heading-decorate" data-caption-animate="fadeInUp" data-caption-delay="100"><span class="text-primary">Solari</span> Beauty Salon <br><span class="divider"></span>Beauty as a gift
+                            <h1
+                                class="heading-decorate"
+                                data-caption-animate="fadeInUp"
+                                data-caption-delay="100"
+                            >
+                                {{ $slider->title }}
                             </h1>
-                            <p class="lead" data-caption-animate="fadeInUp" data-caption-delay="250">Solari Beauty Salon offers the latest and highest quality services for you and all your family members. We specialize in all beauty treatments and our team is fully professional and innovative, from makeup services to hairstyling.</p><a class="button button-default-outline" href="#" data-caption-animate="fadeInUp" data-caption-delay="450">Book Now</a>
+                            <p
+                                class="lead"
+                                data-caption-animate="fadeInUp"
+                                data-caption-delay="250"
+                            >
+                                {{ $slider->body }}
+                            </p>
+                            <a
+                                class="button button-default-outline"
+                                href="#" data-caption-animate="fadeInUp"
+                                data-caption-delay="450"
+                            >
+                                Book Now
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="swiper-slide" data-slide-bg="images/slide-2-1920x720.jpg">
-            <div class="swiper-slide-caption section-md">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-10 col-lg-8 col-xl-7">
-                            <h1 class="heading-decorate" data-caption-animate="fadeInUp" data-caption-delay="100"><span class="text-primary">Experience </span> the Best<br><span class="divider"></span>Beauty Services
-                            </h1>
-                            <p class="lead" data-caption-animate="fadeInUp" data-caption-delay="250">We offer a full range of hairdressing services for men and women, eyebrow and eyelash care, the services of make-up artists and stylists. Entrust your beauty to professionals who really care about your style and look!</p><a class="button button-default-outline" href="#" data-caption-animate="fadeInUp" data-caption-delay="450">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide" data-slide-bg="images/slide-3-1920x720.jpg">
-            <div class="swiper-slide-caption section-md">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-10 col-lg-8 col-xl-7">
-                            <h1 class="heading-decorate" data-caption-animate="fadeInUp" data-caption-delay="100">Professional <span class="text-primary">Beauty</span> <br><span class="divider"></span>Care for Everyone
-                            </h1>
-                            <p class="lead" data-caption-animate="fadeInUp" data-caption-delay="250">Our beauty salon treatments will help you relax after a long and stressful day. At Solari, you can pamper yourself and enjoy the benefits of professional beauty care available at affordable price. Enjoy your life with our high-quality beauty services.</p><a class="button button-default-outline" href="#" data-caption-animate="fadeInUp" data-caption-delay="450">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @empty
+            <hi>Not sliders</hi>
+        @endforelse
     </div>
     <!-- Swiper Pagination -->
     <div class="swiper-pagination"></div>
