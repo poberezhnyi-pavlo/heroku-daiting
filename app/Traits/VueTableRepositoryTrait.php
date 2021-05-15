@@ -39,9 +39,9 @@ trait VueTableRepositoryTrait
                 Arr::forget($decodedQuery, 'user_type');
             }
 
-            $data = $byColumn == 1 ?
-                $this->filterByColumn($data, $decodedQuery) :
-                $this->filter($data, $decodedQuery, $fields);
+            $data = $byColumn == 1
+                ? $this->filterByColumn($data, $decodedQuery)
+                : $this->filter($data, $decodedQuery, $fields);
         }
 
         $count = $data->count();
