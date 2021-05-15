@@ -22,6 +22,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="{{route('admin.message.index')}}" class="nav-link">
+                <i class="far fa-comments"></i>
+                <p>Messages</p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="{{route('gifts.index')}}" class="nav-link">
                 <i class="fas fa-gift"></i>
                 <p>Woman Gifts</p>

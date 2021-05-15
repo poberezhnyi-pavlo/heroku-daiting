@@ -39,6 +39,7 @@ Vue.component('draggable-images', require('./components/admin/DraggableImages').
 Vue.component('homepage-slides', require('./components/admin/homepageSlide/HomepageSlides').default);
 Vue.component('homepage-slide-form', require('./components/admin/homepageSlide/HomepageSlideNewForm').default);
 Vue.component('delete-slide-button', require('./components/admin/homepageSlide/Buttons/DeleteSlideButton').default);
+Vue.component('messages-layout', require('./components/admin/messages/MessagesLayout').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

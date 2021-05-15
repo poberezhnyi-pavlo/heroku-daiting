@@ -71,4 +71,24 @@ class UserRepository extends BaseRepository
 
         return $user->forceDelete();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAllManUsers()
+    {
+        return $this->model::query()
+            ->hasManRelation()
+            ->get();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAllWomanUsers()
+    {
+        return $this->model::query()
+            ->hasWomanRelation()
+            ->get();
+    }
 }

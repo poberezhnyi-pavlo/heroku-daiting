@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Cmgmyr\Messenger\Traits\Messagable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -35,6 +37,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     use SoftDeletes;
+    use Messagable;
 
     public const ROLE_SUPER_ADMIN = 'superAdmin';
     public const ROLE_ADMIN = 'admin';
@@ -239,5 +242,29 @@ class User extends Authenticatable
     public function getFullNameAttribute(): string
     {
         return "{$this->name} {$this->last_name}";
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeHasManRelation(Builder $query)
+    {
+        return $query->hasMorph(
+            'user',
+            Man::class
+        );
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeHasWomanRelation(Builder $query)
+    {
+        return $query->hasMorph(
+            'user',
+            Woman::class
+        );
     }
 }

@@ -49,3 +49,15 @@ Route::group([
         Route::resource('slides', 'Admin\SlidesController');
     }
 );
+
+Route::group([
+    'prefix' => 'common',
+//        'middleware' => [
+//            'auth',
+//        ],
+],
+    static function () {
+        //Messages
+        Route::resource('messages', 'Common\MessagesController');
+    }
+);

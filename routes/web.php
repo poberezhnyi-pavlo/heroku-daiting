@@ -86,5 +86,11 @@ Route::group(
 
         //Gifts
         Route::resource('gifts', 'GiftController');
+
+        //Messages
+        Route::group(['prefix' => 'messages'], static function () {
+            Route::get('/', 'MessageController@index')
+                ->name('admin.message.index');
+        });
     }
 );

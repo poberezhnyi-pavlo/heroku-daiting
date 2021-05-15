@@ -109,7 +109,11 @@ class UserService extends BaseService
         return $updatedUser;
     }
 
-    public function destroyUser(int $userId)
+    /**
+     * @param int $userId
+     * @return bool|null
+     */
+    public function destroyUser(int $userId): ?bool
     {
         /**
          * @var User
@@ -118,5 +122,21 @@ class UserService extends BaseService
 
         return $this->repository
             ->forceDeleteUser($user);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function indexMen()
+    {
+        return $this->repository->getAllManUsers();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function indexWomen()
+    {
+        return $this->repository->getAllWomanUsers();
     }
 }
