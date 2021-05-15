@@ -10,7 +10,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-/public/
+/public/*
 .idea/
 !/public/css/
 !/public/js/

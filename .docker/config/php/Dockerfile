@@ -76,4 +76,6 @@ RUN python --version
 
 WORKDIR /var/www
 
+USER $user
+
 CMD ["php-fpm"]
