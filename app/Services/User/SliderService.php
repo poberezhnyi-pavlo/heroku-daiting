@@ -6,7 +6,7 @@ use App\Repositories\User\SliderRepository;
 use App\Services\BaseService;
 use Illuminate\Support\Collection;
 
-class SliderService extends BaseService
+final class SliderService extends BaseService
 {
     public function __construct(SliderRepository $sliderRepository)
     {

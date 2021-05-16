@@ -6,7 +6,7 @@ use App\Models\Slide;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Collection;
 
-class SliderRepository extends BaseRepository
+final class SliderRepository extends BaseRepository
 {
     public function __construct(Slide $slide)
     {

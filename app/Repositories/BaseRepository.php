@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Woman;
 use App\Traits\VueTableRepositoryTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
@@ -170,6 +171,7 @@ abstract class BaseRepository
         if ($withTrashed) {
             $q->withTrashed();
         }
+
         return $q->get();
     }
 

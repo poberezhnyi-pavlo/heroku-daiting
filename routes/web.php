@@ -13,6 +13,8 @@ Route::group(
     ],
     static function () {
         Route::get('/', 'HomeController')->name('user.index');
+        Route::get('ladies', 'WomanController@index')->name('user.woman.index');
+        Route::get('ladies/{women}', 'WomanController@show')->name('user.woman.show');
     })
 ;
 
