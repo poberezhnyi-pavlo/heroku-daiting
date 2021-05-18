@@ -15,7 +15,8 @@ class PageSeeder extends Seeder
      */
     public function run(): void
     {
-        factory(Page::class, 2)
-            ->create();
+        foreach (Page::PAGES_TYPE_LIST as $type) {
+            factory(Page::class)->state($type)->create();
+        }
     }
 }

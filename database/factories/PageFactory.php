@@ -3,17 +3,20 @@
 /** @var Factory $factory */
 
 use App\Models\Page;
+use Faker\Factory as Faker;
 use Illuminate\Database\Eloquent\Factory;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 $factory->define(Page::class, static function () {
     $langs = [];
 
+    $faker = Faker::create();
     foreach (LaravelLocalization::getSupportedLocales() as $key=>$locale) {
-        $faker = \Faker\Factory::create($locale['regional']);
+        $faker->locale($locale['regional']);
+
         $langs[$key] = [
             'title' => $faker->realText(20),
-            'body' => $faker->realText(),
+            'body' => $faker->realText(10000),
         ];
     }
 
@@ -22,3 +25,15 @@ $factory->define(Page::class, static function () {
         'slug' => $faker->slug,
     ], $langs);
 });
+
+$factory->state(Page::class, Page::PAGE_TYPE_ABOUT, [
+    'type' => Page::PAGE_TYPE_ABOUT,
+]);
+
+$factory->state(Page::class, Page::PAGE_TYPE_INFORMATION, [
+    'type' => Page::PAGE_TYPE_INFORMATION,
+]);
+
+$factory->state(Page::class, Page::PAGE_TYPE_SERVICES, [
+    'type' => Page::PAGE_TYPE_SERVICES,
+]);

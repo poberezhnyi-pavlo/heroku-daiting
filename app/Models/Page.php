@@ -19,6 +19,16 @@ class Page extends Model implements TranslatableContract
 {
     use Translatable;
 
+    public const PAGE_TYPE_ABOUT = 'About';
+    public const PAGE_TYPE_INFORMATION = 'Information';
+    public const PAGE_TYPE_SERVICES = 'Services';
+
+    public const PAGES_TYPE_LIST = [
+        self::PAGE_TYPE_ABOUT,
+        self::PAGE_TYPE_INFORMATION,
+        self::PAGE_TYPE_SERVICES,
+    ];
+
     /**
      * @var string[]
      */
