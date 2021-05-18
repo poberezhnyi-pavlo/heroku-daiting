@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
@@ -86,7 +87,7 @@ class BaseHuman extends Model
     /**
      * @param array $langs
      * @return void
-     * @throws \JsonException
+     * @throws Exception
      */
     public function setLangsAttribute(array $langs): void
     {
@@ -94,11 +95,12 @@ class BaseHuman extends Model
     }
 
     /**
-     * @param $langs
-     * @return false|string
-     * @throws \JsonException
+     * @param string|null $langs
+     *
+     * @return array
+     * @throws Exception
      */
-    public function getLangsAttribute(?string $langs)
+    public function getLangsAttribute(?string $langs): array
     {
         return json_decode($langs, true, 512, JSON_THROW_ON_ERROR);
     }

@@ -37,15 +37,14 @@ final class ImageHelper
     public static function setImageWatermark(
         string $imgPath,
         string $watermarkPath
-    ): bool
-    {
+    ): bool {
         $waterMark = Storage::disk('public')->path($watermarkPath);
         $fullImgPath = Storage::disk('public')->path($imgPath);
 
         $image = Picture::make($fullImgPath);
         $image->insert($waterMark, 'bottom-right', 5, 5);
 
-        return Storage::disk('public')->put( $imgPath, $image->stream());
+        return Storage::disk('public')->put($imgPath, $image->stream());
     }
 
     /**
@@ -56,8 +55,7 @@ final class ImageHelper
     public static function removeImage(
         string $path,
         string $disk = 'public'
-    ): bool
-    {
+    ): bool {
         $fixedPath = Str::of($path)->replaceFirst('/storage/', '/');
 
         return Storage::disk($disk)->delete($fixedPath);

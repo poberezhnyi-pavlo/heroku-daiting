@@ -25,8 +25,10 @@ class WomanController extends Controller
         return view('site.pages.woman.index', ['women' => $women]);
     }
 
-    public function show(Woman $woman): View
+    public function show(string $lang = 'en', int $womanId): View
     {
-        return view();
+        $woman = $this->womenService->getWomanById($womanId);
+
+        return view('site.pages.woman.show', ['woman' => $woman]);
     }
 }

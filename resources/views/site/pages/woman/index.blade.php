@@ -13,14 +13,14 @@
                 style="display: flex; flex-wrap: wrap"
             >
             @forelse($women as $woman)
-                @php /* @var App\Models\Woman $woman */@endphp
                     <div class="col-sm-6 col-lg-4">
                         <article class="box-icon-modern modern-variant-2">
                             <div class="icon-modern">
                                 <img src="{{  asset('storage/' . $woman->avatar) }}" x="0px" y="0px" width="53.948px" height="79.418px">
                             </div>
                             <h4 class="box-icon-modern-title">
-                                <a href="#">{{ $woman->full_name}}</a>
+{{--                                TODO create variables after implmentation multi language--}}
+                                <a href="{{ route('user.woman.show', ['womanId' => $woman->id, 'lang' => 'en' ]) }}">{{ $woman->full_name}}</a>
                             </h4>
                         </article>
                     </div>

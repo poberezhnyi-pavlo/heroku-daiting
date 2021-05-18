@@ -98,7 +98,7 @@ class WomanRepository extends BaseRepository
 
                 ImageHelper::setImageWatermark(
                     $path,
-                    env('WATERMARK_PATH')
+                    config('watermak.url'),
                 );
 
                 $woman->images()->create([

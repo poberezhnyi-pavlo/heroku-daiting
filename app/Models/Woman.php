@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
@@ -19,7 +20,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property string education
  * @property string langs
  * @property string job
- * @property string travel_countries
+ * @property string|array travel_countries
  * @property string vises
  * @property string creed
  * @property string bad_habits
@@ -27,6 +28,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property string about_myself
  * @property string city
  * @property bool is_show_in_gallery
+ * @property int age
  * @property Carbon created_at
  * @property Carbon edited_at
  * @property Carbon deleted_at
@@ -118,9 +120,7 @@ final class Woman extends BaseHuman
     }
 
     /**
-     * @param array $countries
-     * @return void
-     * @throws \JsonException
+     * @throws Exception
      */
     public function setTravelCountriesAttribute(array $countries): void
     {
@@ -128,13 +128,16 @@ final class Woman extends BaseHuman
     }
 
     /**
-     * @param $countries
-     * @return false|string
-     * @throws \JsonException
+     * @throws Exception
      */
-    public function getTravelCountriesAttribute(?string $countries)
+    public function getTravelCountriesAttribute(?string $countries): array
     {
         return json_decode($countries, true, 512, JSON_THROW_ON_ERROR);
+    }
+
+    public function getAgeAttribute(): int
+    {
+        return Carbon::now()->diffInYears($this->attributes['birth_date']);
     }
 
     /**

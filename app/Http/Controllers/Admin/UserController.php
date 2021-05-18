@@ -6,7 +6,6 @@ use App\Http\Controllers\BaseController;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserStore\UserStoreRequest;
-use App\Http\Requests\UserStore\WomanStoreRequest;
 use App\Http\Requests\VueTableRequest;
 use App\Models\Man;
 use App\Models\User;
