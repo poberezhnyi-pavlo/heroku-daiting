@@ -15,7 +15,9 @@ Route::group(
         Route::get('/', 'HomeController')->name('user.index');
         Route::get('ladies', 'WomanController@index')->name('user.woman.index');
         Route::get('ladies/{womanId}', 'WomanController@show')->name('user.woman.show');
+
         Route::get('about', 'PageController@about')->name('user.pages.about');
+        Route::get('services', 'PageController@services')->name('user.pages.services');
     })
 ;
 
