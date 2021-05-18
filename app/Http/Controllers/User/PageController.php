@@ -27,4 +27,11 @@ class PageController extends BaseController
 
         return view('site.pages.page', ['page' => $page, 'title' => Page::PAGE_TYPE_SERVICES]);
     }
+
+    public function information(string $lang = 'en'): View
+    {
+        $page = $this->service->getInformation($lang);
+
+        return view('site.pages.page', ['page' => $page, 'title' => Page::PAGE_TYPE_SERVICES]);
+    }
 }

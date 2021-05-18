@@ -8,7 +8,7 @@ Route::group(
         'namespace' => 'User',
         'prefix' => '{lang?}',
         'where' => [
-            'lang' => '[a-z]{2}',
+            'lang' => 'en|es|fr|it',
         ],
     ],
     static function () {
@@ -18,6 +18,7 @@ Route::group(
 
         Route::get('about', 'PageController@about')->name('user.pages.about');
         Route::get('services', 'PageController@services')->name('user.pages.services');
+        Route::get('information', 'PageController@information')->name('user.pages.information');
     })
 ;
 
