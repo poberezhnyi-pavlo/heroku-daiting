@@ -133,7 +133,6 @@ class UserController extends BaseController
      * @param UserStoreRequest $request
      * @return RedirectResponse
      */
-
     public function store(UserStoreRequest $request): RedirectResponse
     {
         $data = $request->only([

@@ -19,6 +19,17 @@ Route::group(
         Route::get('about', 'PageController@about')->name('user.pages.about');
         Route::get('services', 'PageController@services')->name('user.pages.services');
         Route::get('information', 'PageController@information')->name('user.pages.information');
+
+        Route::namespace('Profile')
+            ->prefix('profile')
+            ->group(static function() {
+                Route::get('login', 'LoginController@showForm')->name('user.profile.showLoginFrom');
+                Route::post('login', 'LoginController@login')->name('user.profile.login');
+
+                Route::get('/{user}', 'ProfileController@showForm')->name('user.profile.show');
+                Route::post('/{user}/store', 'ProfileController@store')->name('user.profile.store');
+                Route::put('/{user}/update', 'ProfileController@update')->name('user.profile.update');
+            });
     })
 ;
 
