@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col">
                 <create-new-chat-form
-                    :men="men"
-                    :women="women"
+                    :men="man"
+                    :women="woman"
                 />
             </div>
         </div>

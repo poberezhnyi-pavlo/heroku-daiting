@@ -26,9 +26,15 @@ Route::group(
                 Route::get('login', 'LoginController@showForm')->name('user.profile.showLoginFrom');
                 Route::post('login', 'LoginController@login')->name('user.profile.login');
 
-                Route::get('/{user}', 'ProfileController@showForm')->name('user.profile.show');
-                Route::post('/{user}/store', 'ProfileController@store')->name('user.profile.store');
-                Route::put('/{user}/update', 'ProfileController@update')->name('user.profile.update');
+                Route::middleware('auth')
+                    ->group(function () {
+                        Route::get('messages', 'MessageController@index')->name('user.profile.index');
+                        Route::get('chat/{thread}', 'MessageController@chat')->name('user.profile.chat');
+
+                        Route::get('/{user}', 'ProfileController@showForm')->name('user.profile.show');
+                        Route::post('/{user}/store', 'ProfileController@store')->name('user.profile.store');
+                        Route::put('/{user}/update', 'ProfileController@update')->name('user.profile.update');
+                    });
             });
     })
 ;

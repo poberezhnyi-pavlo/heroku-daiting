@@ -9,7 +9,6 @@ use App\Services\Common\Chat\MessageService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use function GuzzleHttp\Promise\all;
 
 /**
  * Class MessagesController
@@ -85,5 +84,12 @@ class MessagesController extends BaseController
     public function destroy($id)
     {
         //
+    }
+
+    public function sendMessage(SendMessageRequest $request): JsonResponse
+    {
+        $this->service->sendMessage($request->validated());
+
+        return response()->json();
     }
 }

@@ -61,3 +61,14 @@ Route::group([
         Route::resource('messages', 'Common\MessagesController');
     }
 );
+
+Route::namespace('Api')
+    ->prefix('messages')
+    ->group(function () {
+        Route::get('{user}/participants', 'ParticipantController@getParticipants');
+        Route::get('participants/{participant}', 'ParticipantController@getParticipant');
+
+        Route::get('/{thread}', 'MessageController@getMessages');
+        Route::post('send', 'MessageController@sendMessage');
+    })
+;

@@ -1,17 +1,9 @@
 @extends('site.layouts.main')
 
-@php
-    /** @var App\Models\User $user */
-@endphp
-
-{{--@section('title')--}}
-{{--    Profile - {{ $user->name ?? '' }}--}}
-{{--@endsection--}}
-
 @section('content')
     <div class="container">
        <div class="row">
-           <div class="col-md-3">
+           <div class="col-md-2">
                <ul class="nav flex-column">
                    <li class="nav-item">
                        <a class="nav-link active" href="#">Profile</a>
@@ -24,7 +16,7 @@
                    </li>
                </ul>
            </div>
-           <div class="col-md-9">
+           <div class="col-md-10">
                @yield('profile')
            </div>
        </div>

@@ -40,6 +40,8 @@ Vue.component('homepage-slides', require('./components/admin/homepageSlide/Homep
 Vue.component('homepage-slide-form', require('./components/admin/homepageSlide/HomepageSlideNewForm').default);
 Vue.component('delete-slide-button', require('./components/admin/homepageSlide/Buttons/DeleteSlideButton').default);
 Vue.component('messages-layout', require('./components/admin/messages/MessagesLayout').default);
+Vue.component('chat-component', require('./components/user/messages/ChatComponent').default);
+Vue.component('messages-component', require('./components/user/messages/MessagesComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
