@@ -63,12 +63,23 @@ Route::group([
 );
 
 Route::namespace('Api')
-    ->prefix('messages')
     ->group(function () {
-        Route::get('{user}/participants', 'ParticipantController@getParticipants');
-        Route::get('participants/{participant}', 'ParticipantController@getParticipant');
+        Route::prefix('messages')
+            ->group(function () {
+                Route::get('{user}/participants', 'ParticipantController@getParticipants');
+                Route::get('participants/{participant}', 'ParticipantController@getParticipant');
 
-        Route::get('/{thread}', 'MessageController@getMessages');
-        Route::post('send', 'MessageController@sendMessage');
+                Route::get('/{thread}', 'MessageController@getMessages');
+                Route::post('send', 'MessageController@sendMessage');
+            })
+        ;
+
+        Route::prefix('woman')
+            ->namespace('Woman')
+            ->group(function () {
+                Route::get('/scroll', 'WomenController@getWoman');
+                Route::get('{womanId}/images', 'ImageController@getImages');
+            })
+        ;
     })
 ;

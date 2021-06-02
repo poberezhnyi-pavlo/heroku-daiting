@@ -30,6 +30,6 @@ class GalleryImage extends Model
      */
     public function getUriAttribute(string $uri): string
     {
-        return Storage::url($uri);
+        return Storage::disk()->url($uri);
     }
 }

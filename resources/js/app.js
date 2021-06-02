@@ -20,6 +20,12 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 Vue.use(VueSweetalert2);
 
+import vuescroll from 'vuescroll';
+Vue.use(vuescroll);
+
+import VueEasyLightbox from 'vue-easy-lightbox';
+Vue.use(VueEasyLightbox);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -42,6 +48,8 @@ Vue.component('delete-slide-button', require('./components/admin/homepageSlide/B
 Vue.component('messages-layout', require('./components/admin/messages/MessagesLayout').default);
 Vue.component('chat-component', require('./components/user/messages/ChatComponent').default);
 Vue.component('messages-component', require('./components/user/messages/MessagesComponent').default);
+Vue.component('woman-scroll', require('./components/user/main/ScrollWomanComponent').default);
+Vue.component('image-component', require('./components/user/main/Gallery/ImageComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

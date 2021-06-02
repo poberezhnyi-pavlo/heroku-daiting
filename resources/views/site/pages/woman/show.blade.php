@@ -121,19 +121,55 @@
     <section class="section section-md bg-default text-center">
         <div class="container">
             <h2>Gallery</h2>
-            <div class="divider-lg"></div>
-            <div class="row">
-                <div class="row icon-modern-list no-gutters">
-                    @forelse($woman->images as $image)
-                        @php /** @var App\Models\GalleryImage $image */@endphp
-                        <div class="col-4 m: 15px p: 15px">
-                            <figure>
-                                <img src="{{ $image->uri }}" alt="" width="370" height="370">
-                            </figure>
-                        </div>
-                    @empty
-                        <p>Lady not upload image or video</p>
-                    @endforelse
+            <div>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button
+                                class="nav-link active"
+                                id="nav-home-tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#images"
+                                type="button"
+                                role="tab"
+                                aria-controls="nav-home"
+                                aria-selected="true"
+                        >
+                            Images
+                        </button>
+                        <button
+                                class="nav-link"
+                                id="nav-profile-tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#videos"
+                                type="button"
+                                role="tab"
+                                aria-controls="nav-profile"
+                                aria-selected="false"
+                        >
+                            Videos
+                        </button>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div
+                            class="tab-pane fade show active"
+                            id="images"
+                            role="tabpanel"
+                            aria-labelledby="nav-home-tab"
+                    >
+                        <image-component
+                            :woman-id="{{ $woman->getKey() }}"
+                        />
+                    </div>
+                    <div
+                            class="tab-pane fade"
+                            id="videos"
+                            role="tabpanel"
+                            aria-labelledby="nav-profile-tab"
+                    >
+                        Videos
+                    </div>
+                </div>
             </div>
         </div>
     </section>
