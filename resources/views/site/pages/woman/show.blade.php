@@ -125,7 +125,7 @@
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button
-                                class="nav-link active"
+                                class="nav-link"
                                 id="nav-home-tab"
                                 data-bs-toggle="tab"
                                 data-bs-target="#images"
@@ -137,7 +137,7 @@
                             Images
                         </button>
                         <button
-                                class="nav-link"
+                                class="nav-link active"
                                 id="nav-profile-tab"
                                 data-bs-toggle="tab"
                                 data-bs-target="#videos"
@@ -157,9 +157,9 @@
                             role="tabpanel"
                             aria-labelledby="nav-home-tab"
                     >
-                        <image-component
-                            :woman-id="{{ $woman->getKey() }}"
-                        />
+{{--                        <image-component--}}
+{{--                            :woman-id="{{ $woman->getKey() }}"--}}
+{{--                        />--}}
                     </div>
                     <div
                             class="tab-pane fade"
@@ -167,7 +167,9 @@
                             role="tabpanel"
                             aria-labelledby="nav-profile-tab"
                     >
-                        Videos
+                        <video-component
+                            :woman-id="{{ $woman->getKey() }}"
+                        />
                     </div>
                 </div>
             </div>

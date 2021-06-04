@@ -12,6 +12,14 @@
     <section class="section section-lg bg-default text-center">
         <div class="container">
             <h2>Our Services</h2>
+            <div class="row icon-modern-list no-gutters">
+                <woman-scroll></woman-scroll>
+            </div>
+        </div>
+    </section>
+    <section class="section section-lg bg-default text-center">
+        <div class="container">
+            <h2>Our Services</h2>
             <div class="divider-lg"></div>
             <div class="row justify-content-center">
                 <div class="col-md-10 col-lg-9">

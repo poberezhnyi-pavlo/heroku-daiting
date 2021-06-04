@@ -26,6 +26,9 @@ Vue.use(vuescroll);
 import VueEasyLightbox from 'vue-easy-lightbox';
 Vue.use(VueEasyLightbox);
 
+import VueYouTube from 'vue-youtube';
+Vue.use(VueYouTube);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -50,6 +53,7 @@ Vue.component('chat-component', require('./components/user/messages/ChatComponen
 Vue.component('messages-component', require('./components/user/messages/MessagesComponent').default);
 Vue.component('woman-scroll', require('./components/user/main/ScrollWomanComponent').default);
 Vue.component('image-component', require('./components/user/main/Gallery/ImageComponent').default);
+Vue.component('video-component', require('./components/user/main/Gallery/VideoComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

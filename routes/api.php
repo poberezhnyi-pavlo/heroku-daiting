@@ -79,6 +79,7 @@ Route::namespace('Api')
             ->group(function () {
                 Route::get('/scroll', 'WomenController@getWoman');
                 Route::get('{womanId}/images', 'ImageController@getImages');
+                Route::get('{womanId}/videos', 'VideoController@getVideos');
             })
         ;
     })
