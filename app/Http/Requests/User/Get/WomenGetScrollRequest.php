@@ -13,6 +13,10 @@ class WomenGetScrollRequest extends FormRequest
                 'nullable',
                 'int',
             ],
+            'count' => [
+                'nullable',
+                'int',
+            ]
         ];
     }
 }

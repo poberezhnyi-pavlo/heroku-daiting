@@ -15,9 +15,9 @@ class HomeController extends Controller
         $this->sliderService = $sliderService;
     }
 
-    public function __invoke(string $lang = 'en'): View
+    public function __invoke(): View
     {
-        $sliders = $this->sliderService->getAll($lang);
+        $sliders = $this->sliderService->getAll();
 
         return view('site.pages.index', [
             'sliders' => $sliders,

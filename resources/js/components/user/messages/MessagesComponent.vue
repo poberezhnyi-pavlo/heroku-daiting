@@ -32,9 +32,9 @@ import participantService from '../../../services/messages/participantService';
 
 export default {
     name: 'MessagesComponent',
-    components: [
+    components: {
         ChatComponent,
-    ],
+    },
     props: {
         user: {
             type: Object,

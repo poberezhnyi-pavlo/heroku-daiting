@@ -1,15 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(
     [
         'namespace' => 'User',
-        'prefix' => '{lang?}',
+        'prefix' => LaravelLocalization::setLocale(),
         'where' => [
             'lang' => 'en|es|fr|it',
         ],
+        'middleware' => ['localize'],
     ],
     static function () {
         Route::get('/', 'HomeController')->name('user.index');

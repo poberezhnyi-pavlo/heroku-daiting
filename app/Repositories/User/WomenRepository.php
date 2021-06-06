@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 final class WomenRepository extends BaseRepository
 {
-    private const COUNT_WOMAN_FOR_SCROLL = 6;
+    private const COUNT_WOMAN_FOR_SCROLL = 3;
 
     public function __construct(Woman $woman)
     {
@@ -36,7 +36,7 @@ final class WomenRepository extends BaseRepository
         ;
     }
 
-    public function getWoman(int $from): Collection
+    public function getWoman(array $params): Collection
     {
         return $this
             ->model
@@ -50,8 +50,8 @@ final class WomenRepository extends BaseRepository
                 'users.avatar as avatar',
                 DB::raw('CONCAT(users.name, \' \', users.last_name) as full_name')
             ])
-            ->offset($from ?? 0)
-            ->limit(self::COUNT_WOMAN_FOR_SCROLL)
+            ->offset($params['from'] ?? 0)
+            ->limit($params['count'] ?? self::COUNT_WOMAN_FOR_SCROLL)
             ->get()
         ;
     }

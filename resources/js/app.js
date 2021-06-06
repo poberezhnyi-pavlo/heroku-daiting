@@ -29,6 +29,9 @@ Vue.use(VueEasyLightbox);
 import VueYouTube from 'vue-youtube';
 Vue.use(VueYouTube);
 
+import VueCarousel from 'vue-carousel';
+Vue.use(VueCarousel);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

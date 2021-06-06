@@ -1,13 +1,13 @@
 @extends('site.layouts.main')
 
 @section('title')
-    Ladies gallery
+   {{ __('main.gallery') }}
 @endsection
 
 @section('content')
     <section class="section section-lg bg-default text-center">
         <div class="container">
-            <h2>Ladies Gallery</h2>
+            <h2>{{ __('main.gallery') }}</h2>
             <div
                 class="row icon-modern-list no-gutters"
                 style="display: flex; flex-wrap: wrap"
@@ -16,11 +16,18 @@
                     <div class="col-sm-6 col-lg-4">
                         <article class="box-icon-modern modern-variant-2">
                             <div class="icon-modern">
-                                <img src="{{  asset('storage/' . $woman->avatar) }}" x="0px" y="0px" width="53.948px" height="79.418px">
+                                <img
+                                    src="{{  asset('storage/' . $woman->avatar) }}"
+                                    x="0px"
+                                    y="0px"
+                                    width="53.948px"
+                                    height="79.418px"
+                                >
                             </div>
                             <h4 class="box-icon-modern-title">
-{{--                                TODO create variables after implmentation multi language--}}
-                                <a href="{{ route('user.woman.show', ['womanId' => $woman->id, 'lang' => 'en' ]) }}">{{ $woman->full_name}}</a>
+                                <a href="{{ route('user.woman.show', ['womanId' => $woman->id ]) }}">
+                                    {{ $woman->full_name}}
+                                </a>
                             </h4>
                         </article>
                     </div>

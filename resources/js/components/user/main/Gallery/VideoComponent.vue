@@ -17,9 +17,9 @@ import videoService from '../../../../services/main/videoService';
 
 export default {
     name: 'VideoComponent',
-    components: [
+    components: {
         Youtube,
-    ],
+    },
     props: {
         womanId: {
             type: Number,

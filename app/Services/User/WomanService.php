@@ -15,6 +15,6 @@ final class WomanService extends BaseService
 
     public function getWoman(array $params): Collection
     {
-        return $this->repository->getWoman($params['from']);
+        return $this->repository->getWoman($params);
     }
 }

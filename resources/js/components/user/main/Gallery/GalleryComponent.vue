@@ -54,9 +54,9 @@ import ImageComponent from './ImageComponent';
 
 export default {
     name: 'GalleryComponent',
-    components: [
+    components: {
         ImageComponent,
-    ],
+    },
     props: {
         womanId: {
             type: Number,
