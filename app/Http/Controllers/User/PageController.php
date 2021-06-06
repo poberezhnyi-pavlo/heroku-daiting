@@ -14,9 +14,9 @@ class PageController extends BaseController
         $this->service = $service;
     }
 
-    public function about(string $lang = 'en'): View
+    public function about(): View
     {
-        $page = $this->service->getAbout($lang);
+        $page = $this->service->getAbout();
 
         return view('site.pages.page', ['page' => $page, 'title' => Page::PAGE_TYPE_ABOUT]);
     }

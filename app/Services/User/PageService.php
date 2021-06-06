@@ -13,9 +13,9 @@ class PageService extends BaseService
         $this->repository = $repository;
     }
 
-    public function getAbout(string $lang): Page
+    public function getAbout(): Page
     {
-        return $this->repository->getAbout($lang);
+        return $this->repository->getAbout();
     }
 
     public function getServices(string $lang): Page

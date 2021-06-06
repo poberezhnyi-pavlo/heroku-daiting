@@ -17,14 +17,45 @@
                         <div class="rd-navbar-nav-wrap">
                             <!-- RD Navbar Nav-->
                             <ul class="rd-navbar-nav">
-                                <li class="rd-nav-item active"><a class="rd-nav-link" href="/">Home</a>
-                                </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="about.html">About</a>
-                                </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="typography.html">Typography</a>
+                                <li class="rd-nav-item active">
+                                    <a
+                                        class="rd-nav-link"
+                                        href="{{ route('user.index') }}"
+                                    >
+                                        {{ __('main.home') }}
+                                    </a>
                                 </li>
                                 <li class="rd-nav-item">
-                                    <a class="rd-nav-link" href="{{ route('user.woman.index') }}">Ladies Gallery</a>
+                                    <a
+                                        class="rd-nav-link"
+                                        href="{{ route('user.pages.about') }}"
+                                    >
+                                        {{ __('main.about') }}
+                                    </a>
+                                </li>
+                                <li class="rd-nav-item">
+                                    <a
+                                        class="rd-nav-link"
+                                        href="{{ route('user.pages.services') }}"
+                                    >
+                                        {{ __('main.services') }}
+                                    </a>
+                                </li>
+                                <li class="rd-nav-item">
+                                    <a
+                                        class="rd-nav-link"
+                                        href="{{ route('user.woman.index') }}"
+                                    >
+                                        {{ __('main.gallery') }}
+                                    </a>
+                                </li>
+                                <li class="rd-nav-item">
+                                    <a
+                                        class="rd-nav-link"
+                                        href="{{ route('user.pages.information') }}"
+                                    >
+                                        {{ __('main.information') }}
+                                    </a>
                                 </li>
                             </ul>
                         </div>

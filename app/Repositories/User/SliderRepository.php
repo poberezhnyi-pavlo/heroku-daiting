@@ -13,10 +13,8 @@ final class SliderRepository extends BaseRepository
         $this->model = $slide;
     }
 
-    public function getSlides(string $lang): Collection
+    public function getSlides(): Collection
     {
-        app()->setLocale($lang);
-
         return Slide::all();
     }
 }

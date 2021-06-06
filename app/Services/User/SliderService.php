@@ -13,8 +13,8 @@ final class SliderService extends BaseService
         $this->repository = $sliderRepository;
     }
 
-    public function getAll(string $lang): Collection
+    public function getAll(): Collection
     {
-        return $this->repository->getSlides($lang);
+        return $this->repository->getSlides();
     }
 }

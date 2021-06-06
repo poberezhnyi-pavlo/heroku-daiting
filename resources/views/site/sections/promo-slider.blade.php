@@ -24,13 +24,6 @@
                             >
                                 {{ $slider->body }}
                             </p>
-                            <a
-                                class="button button-default-outline"
-                                href="#" data-caption-animate="fadeInUp"
-                                data-caption-delay="450"
-                            >
-                                Book Now
-                            </a>
                         </div>
                     </div>
                 </div>

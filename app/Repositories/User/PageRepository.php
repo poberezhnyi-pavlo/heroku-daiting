@@ -12,9 +12,9 @@ class PageRepository extends BaseRepository
         $this->model = $page;
     }
 
-    public function getAbout(string $lang): ?Page
+    public function getAbout(): ?Page
     {
-        app()->setLocale($lang);
+//        app()->setLocale($lang);
 
         return $this->model->where('type', Page::PAGE_TYPE_ABOUT)->first();
     }
