@@ -14,22 +14,16 @@ class PageRepository extends BaseRepository
 
     public function getAbout(): ?Page
     {
-//        app()->setLocale($lang);
-
         return $this->model->where('type', Page::PAGE_TYPE_ABOUT)->first();
     }
 
-    public function getServices(string $lang): ?Page
+    public function getServices(): ?Page
     {
-        app()->setLocale($lang);
-
         return $this->model->where('type', Page::PAGE_TYPE_SERVICES)->first();
     }
 
-    public function getInformation(string $lang): ?Page
+    public function getInformation(): ?Page
     {
-        app()->setLocale($lang);
-
         return $this->model->where('type', Page::PAGE_TYPE_INFORMATION)->first();
     }
 }

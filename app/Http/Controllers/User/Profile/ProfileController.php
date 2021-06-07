@@ -17,7 +17,7 @@ class ProfileController extends BaseController
         $this->service = $profileService;
     }
 
-    public function showForm(string $lang = 'en', User $user): Response
+    public function showForm(User $user): Response
     {
         return response()->view(
             'site.pages.profile.profile.show', [

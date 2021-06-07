@@ -16,10 +16,8 @@ final class WomenGalleryService extends BaseService
         $this->womenRepository = $womenRepository;
     }
 
-    public function getWomen(string $lang, array $filters = []): LengthAwarePaginator
+    public function getWomen(array $filters = []): LengthAwarePaginator
     {
-        app()->setLocale($lang);
-
         return $this->womenRepository->getWomenForGallery($filters);
     }
 

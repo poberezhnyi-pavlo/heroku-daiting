@@ -21,16 +21,16 @@ class PageController extends BaseController
         return view('site.pages.page', ['page' => $page, 'title' => Page::PAGE_TYPE_ABOUT]);
     }
 
-    public function services(string $lang = 'en'): View
+    public function services(): View
     {
-        $page = $this->service->getAbout($lang);
+        $page = $this->service->getServices();
 
         return view('site.pages.page', ['page' => $page, 'title' => Page::PAGE_TYPE_SERVICES]);
     }
 
-    public function information(string $lang = 'en'): View
+    public function information(): View
     {
-        $page = $this->service->getInformation($lang);
+        $page = $this->service->getInformation();
 
         return view('site.pages.page', ['page' => $page, 'title' => Page::PAGE_TYPE_SERVICES]);
     }

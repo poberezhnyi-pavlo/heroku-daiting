@@ -18,14 +18,14 @@ class WomanController extends Controller
         $this->womenService = $womenService;
     }
 
-    public function index(WomenGetRequest $request, string $lang = 'en'): View
+    public function index(WomenGetRequest $request): View
     {
-        $women = $this->womenService->getWomen($lang, $request->all());
+        $women = $this->womenService->getWomen($request->all());
 
         return view('site.pages.woman.index', ['women' => $women]);
     }
 
-    public function show(string $lang = 'en', int $womanId): View
+    public function show(int $womanId): View
     {
         $woman = $this->womenService->getWomanById($womanId);
 

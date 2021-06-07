@@ -17,7 +17,9 @@
                         <div class="rd-navbar-nav-wrap">
                             <!-- RD Navbar Nav-->
                             <ul class="rd-navbar-nav">
-                                <li class="rd-nav-item active">
+                                <li
+                                    class="rd-nav-item {{ Route::currentRouteName() === 'user.index' ? 'active' : ''  }}"
+                                >
                                     <a
                                         class="rd-nav-link"
                                         href="{{ route('user.index') }}"
@@ -25,7 +27,9 @@
                                         {{ __('main.home') }}
                                     </a>
                                 </li>
-                                <li class="rd-nav-item">
+                                <li
+                                    class="rd-nav-item {{ Route::currentRouteName() === 'user.pages.about' ? 'active' : ''  }}"
+                                >
                                     <a
                                         class="rd-nav-link"
                                         href="{{ route('user.pages.about') }}"
@@ -33,7 +37,9 @@
                                         {{ __('main.about') }}
                                     </a>
                                 </li>
-                                <li class="rd-nav-item">
+                                <li
+                                    class="rd-nav-item {{ Route::currentRouteName() === 'user.pages.services' ? 'active' : ''  }}"
+                                >
                                     <a
                                         class="rd-nav-link"
                                         href="{{ route('user.pages.services') }}"
@@ -41,7 +47,14 @@
                                         {{ __('main.services') }}
                                     </a>
                                 </li>
-                                <li class="rd-nav-item">
+                                <li
+                                    class="rd-nav-item
+                                        {{ (Route::currentRouteName() === 'user.woman.index'
+                                                || Route::currentRouteName() === 'user.woman.show')
+                                            ? 'active'
+                                            : ''
+                                        }}"
+                                >
                                     <a
                                         class="rd-nav-link"
                                         href="{{ route('user.woman.index') }}"
@@ -49,7 +62,9 @@
                                         {{ __('main.gallery') }}
                                     </a>
                                 </li>
-                                <li class="rd-nav-item">
+                                <li
+                                    class="rd-nav-item {{ Route::currentRouteName() === 'user.pages.information' ? 'active' : ''  }}"
+                                >
                                     <a
                                         class="rd-nav-link"
                                         href="{{ route('user.pages.information') }}"
