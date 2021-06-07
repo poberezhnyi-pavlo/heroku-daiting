@@ -19,5 +19,4 @@ class GiftRepository extends BaseRepository
     {
         $this->model = $gift;
     }
-
 }

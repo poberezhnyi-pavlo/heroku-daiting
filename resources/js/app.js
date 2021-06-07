@@ -57,6 +57,7 @@ Vue.component('messages-component', require('./components/user/messages/Messages
 Vue.component('woman-scroll', require('./components/user/main/ScrollWomanComponent').default);
 Vue.component('image-component', require('./components/user/main/Gallery/ImageComponent').default);
 Vue.component('video-component', require('./components/user/main/Gallery/VideoComponent').default);
+Vue.component('gifts-component', require('./components/user/GiftsComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

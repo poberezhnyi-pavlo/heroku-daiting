@@ -80,6 +80,9 @@ Route::namespace('Api')
                 Route::get('/scroll', 'WomenController@getWoman');
                 Route::get('{womanId}/images', 'ImageController@getImages');
                 Route::get('{womanId}/videos', 'VideoController@getVideos');
+
+                Route::get('/gifts', 'GiftController@index');
+                Route::post('/gifts', 'GiftController@store');
             })
         ;
     })

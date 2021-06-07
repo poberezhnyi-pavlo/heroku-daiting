@@ -4,9 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Get\WomenGetRequest;
-use App\Models\Woman;
 use App\Services\User\WomenGalleryService;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class WomanController extends Controller
