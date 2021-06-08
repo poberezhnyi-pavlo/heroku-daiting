@@ -6,10 +6,10 @@
            <div class="col-md-2">
                <ul class="nav flex-column">
                    <li class="nav-item">
-                       <a class="nav-link active" href="#">Profile</a>
+                       <a class="nav-link active" href="{{ route('user.profile.show', Auth::id()) }}">Profile</a>
                    </li>
                    <li class="nav-item">
-                       <a class="nav-link" href="#">Messages</a>
+                       <a class="nav-link" href="{{ route('user.profile.messages.index') }}">Messages</a>
                    </li>
                    <li class="nav-item">
                        <a class="nav-link" href="#">Wallet</a>

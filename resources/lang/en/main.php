@@ -7,4 +7,5 @@ return [
     'gallery' => 'Ladies Gallery',
     'information' => 'Information',
     'ladies' => 'Ladies',
+    'profile' => 'Profile',
 ];

@@ -8,6 +8,7 @@
                     <div class="text-center">
                         <img
                             class="profile-user-img img-fluid img-circle"
+                            style="width: 300px; height: 300px;"
                             @if(Str::startsWith($user->avatar, 'http'))
                                 src="{{$user->avatar}}"
                             @else

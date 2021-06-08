@@ -18,13 +18,6 @@ class MessageController extends BaseController
 
     public function index(): Response
     {
-        $threads = $this->service->getAllForMan();
-
-        return response()->view('site.pages.profile.messages.index', ['threads' => $threads]);
-    }
-
-    public function chat(): Response
-    {
         return response()->view('site.pages.profile.messages.chat');
     }
 }

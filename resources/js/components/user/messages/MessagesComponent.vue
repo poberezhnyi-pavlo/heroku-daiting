@@ -20,6 +20,7 @@
         </aside>
         <chat-component
             v-if="participant"
+            :key="index"
             :participant="participant"
             :user="user"
         />
@@ -39,6 +40,7 @@ export default {
         user: {
             type: Object,
             required: true,
+            index: 0,
         }
     },
     data() {
@@ -59,6 +61,7 @@ export default {
             ;
         },
         setParticipant(object) {
+            this.index = object.id
             this.participant = object;
         }
     }

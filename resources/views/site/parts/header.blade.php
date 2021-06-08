@@ -72,6 +72,30 @@
                                         {{ __('main.information') }}
                                     </a>
                                 </li>
+                                @auth
+                                    <li
+                                        class="rd-nav-item {{ Route::currentRouteName() === 'user.profile.show' ? 'active' : ''  }}"
+                                    >
+                                        <a
+                                            class="rd-nav-link"
+                                            href="{{ route('user.profile.show', Auth::id()) }}"
+                                        >
+                                            {{ __('main.profile') }}
+                                        </a>
+                                    </li>
+                                @endauth
+                                @guest
+                                    <li
+                                        class="rd-nav-item {{ Route::currentRouteName() === 'user.profile.showLoginFrom' ? 'active' : ''  }}"
+                                    >
+                                        <a
+                                            class="rd-nav-link"
+                                            href="{{ route('user.profile.showLoginFrom') }}"
+                                        >
+                                            {{ __('main.information') }}
+                                        </a>
+                                    </li>
+                                @endguest
                             </ul>
                         </div>
                     </div>
