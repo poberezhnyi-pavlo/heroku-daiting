@@ -26,7 +26,7 @@
                             <button class="button button-default-outline" data-toggle="modal" data-target="#exampleModalCenter">Send me gift</button>
                         </div>
                         <div class="col-md-6">
-                            <a class="button button-default-outline" href="#">Send me message</a>
+                            <button class="button button-default-outline" data-toggle="modal" data-target="#showFormMessage">Send me message</button>
                         </div>
                     </div>
                 </div>
@@ -189,6 +189,15 @@
                     :woman-id="{{ $woman->getKey() }}"
                 ></gifts-component>
             </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="showFormMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <create-message
+                :woman-id="{{ $woman->user->getKey() }}"
+                :man-id="{{ Auth::id() }}"
+            />
         </div>
     </div>
 
