@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Woman;
 
+use App\Exceptions\CanPayException;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\Gift\GiftSendToWomanRequest;
 use App\Http\Resources\Main\Women\GiftResource;
@@ -20,6 +21,9 @@ class GiftController extends BaseController
         return response()->json(GiftResource::collection($this->service->getGifts()));
     }
 
+    /**
+     * @throws CanPayException
+     */
     public function store(GiftSendToWomanRequest $request): JsonResponse
     {
         $this->service->create($request->validated());

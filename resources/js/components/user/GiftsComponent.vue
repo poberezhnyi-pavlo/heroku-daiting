@@ -18,7 +18,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" @click="send(index)">Send</button>
+            <button type="button" class="btn btn-primary" @click="send(index)" data-dismiss="modal">Send</button>
         </div>
     </div>
 </template>
@@ -31,6 +31,10 @@ export default {
     props: {
         womanId: {
             type: Number,
+            required: true,
+        },
+        user: {
+            type: Object,
             required: true,
         },
     },
@@ -59,6 +63,7 @@ export default {
             const payload = {
                 woman_id: this.womanId,
                 gift_id: index,
+                user_id: this.user.id,
             };
 
             giftService.storeGift(payload);

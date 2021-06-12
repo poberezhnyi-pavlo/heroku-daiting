@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exceptions\CanPayException;
 use App\Http\Requests\Message\SendMessageRequest;
 use App\Http\Resources\Messages\MessagesResource;
 use App\Services\BaseService;
@@ -23,6 +24,9 @@ class MessageController extends BaseService
         return response()->json(MessagesResource::collection($this->service->getMessages($thread)));
     }
 
+    /**
+     * @throws CanPayException
+     */
     public function sendMessage(SendMessageRequest $request): JsonResponse
     {
         $this->service->sendMessage($request->validated());

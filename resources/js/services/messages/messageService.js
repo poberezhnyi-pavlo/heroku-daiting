@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export default {
-    sendMessage(payload) {
-        return axios.post('/api/messages/send', JSON.stringify(payload), {
+    async sendMessage(payload) {
+        return await axios.post('/api/messages/send', JSON.stringify(payload), {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',

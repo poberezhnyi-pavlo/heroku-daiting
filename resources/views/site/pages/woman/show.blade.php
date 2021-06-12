@@ -169,7 +169,7 @@
                     >
                         <video-component
                             :woman-id="{{ $woman->getKey() }}"
-                        />
+                        ></video-component>
                     </div>
                 </div>
             </div>
@@ -187,6 +187,7 @@
                 </div>
                 <gifts-component
                     :woman-id="{{ $woman->getKey() }}"
+                    :user="{{ \Illuminate\Support\Facades\Auth::user() }}"
                 ></gifts-component>
             </div>
         </div>
@@ -196,8 +197,8 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <create-message
                 :woman-id="{{ $woman->user->getKey() }}"
-                :man-id="{{ Auth::id() }}"
-            />
+                :user="{{ \Illuminate\Support\Facades\Auth::user() }}"
+            ></create-message>
         </div>
     </div>
 

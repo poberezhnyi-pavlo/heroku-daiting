@@ -13,13 +13,17 @@ class GiftSendToWomanRequest extends FormRequest
             'woman_id' => [
                 'required',
                 'integer',
-//                Rule::exists('women', 'id'),
+                Rule::exists('women', 'id'),
             ],
             'gift_id' => [
                 'required',
                 'integer',
-//                Rule::exists('gifts', 'id'),
-            ]
+                Rule::exists('gifts', 'id'),
+            ],
+            'user_id' => [
+                'required',
+                'integer'
+            ],
         ];
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Repositories\Admin;
 
 use App\Models\Man;
+use App\Models\User;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class ManRepository
@@ -28,5 +30,10 @@ class ManRepository extends BaseRepository
     public function updateMan(array $data, Man $man): bool
     {
         return $man->update($data);
+    }
+
+    public function getMan(int $userId): Man
+    {
+        return User::whereKey($userId)->first()->user;
     }
 }

@@ -72,7 +72,19 @@
                                         {{ __('main.information') }}
                                     </a>
                                 </li>
+                            </ul>
+                            <div>
                                 @auth
+                                    <div class="dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div>
+                                            <img src="{{asset('starage/', Auth::user()->avatar)}}" width="30" height="30" alt="">
+                                            <label for="">{{ Auth::user()->name }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item">Profile</a>
+                                        <a class="dropdown-item">Logout</a>
+                                    </div>
                                     <li
                                         class="rd-nav-item {{ Route::currentRouteName() === 'user.profile.show' ? 'active' : ''  }}"
                                     >
@@ -96,7 +108,7 @@
                                         </a>
                                     </li>
                                 @endguest
-                            </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

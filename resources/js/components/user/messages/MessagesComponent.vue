@@ -40,13 +40,13 @@ export default {
         user: {
             type: Object,
             required: true,
-            index: 0,
         }
     },
     data() {
         return {
             participants: [],
             participant: undefined,
+            index: 0,
         }
     },
     mounted() {

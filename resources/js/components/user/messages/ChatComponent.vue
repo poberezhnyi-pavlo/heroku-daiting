@@ -10,7 +10,7 @@
         </header>
         <ul id="chat">
             <li
-                v-for="message in messages"
+                v-for="message in messagesUser"
                 :class="classMessage(message.user.id)"
             >
                 <div class="entete">
@@ -47,16 +47,19 @@ export default {
             required: true,
         },
     },
+    computed: {
+        messagesUser() {
+            return this.messages;
+        }
+    },
     data() {
         return {
             body: '',
             messages: [],
-            participant: {},
         }
     },
     mounted() {
         this.getMessages();
-        this.getParticipant();
     },
     methods: {
         classMessage(id) {
@@ -75,8 +78,8 @@ export default {
 
             messageService.sendMessage(payload);
 
-            this.body = '';
             this.getMessages();
+            this.body = '';
         },
         getMessages() {
             messageService.getMessages(this.participant.thread_id)
