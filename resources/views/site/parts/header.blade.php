@@ -72,28 +72,36 @@
                                         {{ __('main.information') }}
                                     </a>
                                 </li>
-                            </ul>
-                            <div>
                                 @auth
-                                    <div class="dropdown" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <div>
-                                            <img src="{{asset('starage/', Auth::user()->avatar)}}" width="30" height="30" alt="">
-                                            <label for="">{{ Auth::user()->name }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item">Profile</a>
-                                        <a class="dropdown-item">Logout</a>
-                                    </div>
-                                    <li
-                                        class="rd-nav-item {{ Route::currentRouteName() === 'user.profile.show' ? 'active' : ''  }}"
-                                    >
+                                    <li class="rd-nav-item dropdown">
                                         <a
-                                            class="rd-nav-link"
-                                            href="{{ route('user.profile.show', Auth::id()) }}"
+                                            class="nav-link dropdown-toggle rd-nav-link"
+{{--                                            data-toggle="dropdown"--}}
+{{--                                            aria-haspopup="true"--}}
+{{--                                            aria-expanded="false"--}}
+                                            href="{{ route('user.profile.show', \Illuminate\Support\Facades\Auth::id()) }}"
                                         >
-                                            {{ __('main.profile') }}
+                                            {{ Auth::user()->name }} <span class="caret"></span>
                                         </a>
+
+                                        <div class="dropdown-menu">
+                                            <a
+                                                class="dropdown-item"
+                                                href="{{ route('user.profile.logout') }}"
+                                                onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"
+                                            >
+                                                {{ __('Logout') }}
+                                            </a>
+
+                                            <form
+                                                id="logout-form" action="{{ route('user.profile.logout') }}"
+                                                method="POST"
+                                                style="display: none;"
+                                            >
+                                                @csrf
+                                            </form>
+                                        </div>
                                     </li>
                                 @endauth
                                 @guest
@@ -108,7 +116,7 @@
                                         </a>
                                     </li>
                                 @endguest
-                            </div>
+                            </ul>
                         </div>
                     </div>
                 </div>

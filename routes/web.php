@@ -29,6 +29,7 @@ Route::group(
 
                 Route::middleware('auth')
                     ->group(function () {
+                        Route::post('logout', 'LogoutController@logout')->name('user.profile.logout');
                         Route::get('messages', 'MessageController@index')->name('user.profile.messages.index');
 
                         Route::get('/{user}', 'ProfileController@showForm')->name('user.profile.show');

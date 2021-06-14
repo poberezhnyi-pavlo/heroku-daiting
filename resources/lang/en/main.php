@@ -8,4 +8,5 @@ return [
     'information' => 'Information',
     'ladies' => 'Ladies',
     'profile' => 'Profile',
+    'logout' => 'Logout',
 ];

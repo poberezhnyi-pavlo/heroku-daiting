@@ -125,26 +125,26 @@
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button
-                                class="nav-link"
-                                id="nav-home-tab"
-                                data-bs-toggle="tab"
-                                data-bs-target="#images"
-                                type="button"
-                                role="tab"
-                                aria-controls="nav-home"
-                                aria-selected="true"
+                            class="nav-link"
+                            id="nav-home-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#images"
+                            type="button"
+                            role="tab"
+                            aria-controls="nav-image"
+                            aria-selected="true"
                         >
                             Images
                         </button>
                         <button
-                                class="nav-link active"
-                                id="nav-profile-tab"
-                                data-bs-toggle="tab"
-                                data-bs-target="#videos"
-                                type="button"
-                                role="tab"
-                                aria-controls="nav-profile"
-                                aria-selected="false"
+                            class="nav-link active"
+                            id="nav-profile-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#videos"
+                            type="button"
+                            role="tab"
+                            aria-controls="nav-video"
+                            aria-selected="false"
                         >
                             Videos
                         </button>
@@ -152,20 +152,20 @@
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
                     <div
-                            class="tab-pane fade show active"
-                            id="images"
-                            role="tabpanel"
-                            aria-labelledby="nav-home-tab"
+                        class="tab-pane"
+                        id="images"
+                        role="tabpanel"
+                        aria-labelledby="nav-image"
                     >
 {{--                        <image-component--}}
 {{--                            :woman-id="{{ $woman->getKey() }}"--}}
 {{--                        />--}}
                     </div>
                     <div
-                            class="tab-pane fade"
-                            id="videos"
-                            role="tabpanel"
-                            aria-labelledby="nav-profile-tab"
+                        class="tab-pane"
+                        id="videos"
+                        role="tabpanel"
+                        aria-labelledby="nav-video"
                     >
                         <video-component
                             :woman-id="{{ $woman->getKey() }}"
